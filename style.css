@@ -44,3 +44,49 @@ body { background-color: #f4f7f6; }
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+.planning-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow-x: auto; /* Permet de faire défiler sur mobile */
+}
+
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.timetable th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px;
+}
+
+.timetable td {
+    border: 1px solid #eee;
+    padding: 12px;
+    height: 60px;
+}
+
+.time {
+    font-weight: bold;
+    background-color: #f9f9f9;
+    width: 100px;
+}
+
+/* Couleurs des matières dans l'emploi du temps */
+.subject {
+    font-weight: 500;
+    border-radius: 4px;
+    color: white;
+}
+
+.maths { background-color: #2196F3 !important; }
+.francais { background-color: #E91E63 !important; }
+.histoire { background-color: #FF9800 !important; }
+.sciences { background-color: #4CAF50 !important; }
+.anglais { background-color: #9C27B0 !important; }
+.sport { background-color: #795548 !important; 
+}
