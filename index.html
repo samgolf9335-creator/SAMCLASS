@@ -1,116 +1,140 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAMCLASS — tableau de bord pour le cahier de textes, mes cours et l'emploi du temps.">
     <title>SAMCLASS - Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
-        <nav class="sidebar">
+        <nav class="sidebar" aria-label="Navigation principale">
             <div class="logo">SAMCLASS</div>
             <ul>
-                <li class="active" onclick="showSection('accueil')">🏠 Accueil</li>
-                <li onclick="showSection('devoirs')">📝 Cahier de Textes</li>
-                <li onclick="showSection('cours')">📚 Mes Cours</li>
-                <li onclick="showSection('planning')">📅 Emploi du Temps</li>
+                <li>
+                    <button type="button" class="nav-btn active" data-section="accueil" aria-controls="content-area">🏠 Accueil</button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-section="devoirs" aria-controls="content-area">📝 Cahier de Textes</button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-section="cours" aria-controls="content-area">📚 Mes Cours</button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn" data-section="planning" aria-controls="content-area">📅 Emploi du Temps</button>
+                </li>
             </ul>
         </nav>
         
-        <main class="main-content">
+        <main class="main-content" role="main">
             <header>
                 <h1 id="section-title">Tableau de Bord</h1>
             </header>
 
-<section id="content-area">
-    <div id="section-accueil" class="content-section">
-        <div class="welcome-card">
-            <h2>Bonjour ! 👋</h2>
-            <p>Bienvenue sur votre espace SAMCLASS.</p>
-        </div>
+            <section id="content-area" aria-live="polite">
+                <section id="section-accueil" class="content-section" aria-labelledby="section-title">
+                    <div class="welcome-card">
+                        <h2>Bonjour ! 👋</h2>
+                        <p>Bienvenue sur votre espace SAMCLASS.</p>
+                    </div>
+                </section>
+
+                <section id="section-devoirs" class="content-section" hidden>
+                    <h2>Ajouter un devoir</h2>
+                    <form id="task-form" onsubmit="addTask(event)" aria-label="Ajouter un devoir">
+                        <label for="task-input" class="visually-hidden">Devoir</label>
+                        <input type="text" id="task-input" name="task" placeholder="Nouveau devoir..." required>
+
+                        <label for="subject-select" class="visually-hidden">Type</label>
+                        <select id="subject-select" name="subject">
+                            <option value="cours">Cours</option>
+                            <option value="devoirs">Devoirs</option>
+                        </select>
+
+                        <label for="date-input" class="visually-hidden">Date</label>
+                        <input type="date" id="date-input" name="date">
+
+                        <button type="submit">Ajouter</button>
+                    </form>
+                    <div id="task-list" aria-live="polite"></div>
+                </section>
+
+                <!-- Placeholder "cours" section — à remplir si nécessaire -->
+                <section id="section-cours" class="content-section" hidden>
+                    <h2>Mes Cours</h2>
+                    <p>Contenu des cours à venir.</p>
+                </section>
+
+                <section id="section-planning" class="content-section" hidden>
+                    <h2>Emploi du temps</h2>
+                    <div class="planning-container">
+                        <table class="timetable" summary="Emploi du temps hebdomadaire">
+                            <caption>Emploi du temps</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Heure</th>
+                                    <th scope="col">Lundi</th>
+                                    <th scope="col">Mardi</th>
+                                    <th scope="col">Mercredi</th>
+                                    <th scope="col">Jeudi</th>
+                                    <th scope="col">Vendredi</th>
+                                    <th scope="col">Samedi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetable-body">
+                                <tr>
+                                    <td class="time">08:30 - 09:35</td>
+                                    <td class="subject subject-6APG1">6APG1</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">09:40 - 10:45</td>
+                                    <td class="subject subject-6APG2">6APG2</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">10:55 - 12:00</td>
+                                    <td class="subject subject-6APG3">6APG3</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">12:05 - 13:10</td>
+                                    <td class="subject subject-6APG4">6APG4</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">13:30 - 14:35</td>
+                                    <td class="subject subject-6APG4">6APG4</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">14:40 - 15:45</td>
+                                    <td class="subject subject-6APG3">6APG3</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">15:55 - 17:00</td>
+                                    <td class="subject subject-6APG2">6APG2</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">17:05 - 18:10</td>
+                                    <td class="subject subject-6APG1">6APG1</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+        </main>
     </div>
-  
-    <div id="section-devoirs" class="content-section" style="display:none;">
-        <div class="input-section">
-            <input type="text" id="task-input" placeholder="Nouveau devoir...">
-            <select id="subject-select">
-                <option value="cours">Cours</option>
-                <option value="devoirs">Devoirs</option>
-            </select>
-            <input type="date" id="date-input">
-            <button onclick="addTask()">Ajouter</button>
-        </div>
-        <div id="task-list"></div>
-    </div>
-     <div id="section-planning" class="content-section" style="display:none;">
-  <div class="planning-container">
-    <table class="timetable">
-      <thead>
-        <tr>
-          <th>Heure</th>
-          <th>Lundi</th>
-          <th>Mardi</th>
-          <th>Mercredi</th>
-          <th>Jeudi</th>
-          <th>Vendredi</th>
-          <th>Samedi</th>
-        </tr>
-          </thead>
-      <tbody id="timetable-body">
-        <tr>
-          <td class="time">08h30 - 09h35</td>
-          <td class="subject 6APG1">6APG1</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-                 
-            <td class="time">09h40 - 10h45</td>
-          <td class="subject 6APG2">6APG2</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-       
-          <td class="time">10h55 - 12h</td>
-          <td class="subject 6APG3">6APG3</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            
-          <td class="time">12h05 - 13h10</td>
-          <td class="subject 6APG4">6APG4</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            
-          <td class="time">13h30 - 14h35</td>
-          <td class="subject 6APG4">6APG4</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-      
-          <td class="time">14h40 - 15h45</td>
-          <td class="subject 6APG3">6APG3</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-       
-          <td class="time">15h55 - 17h</td>
-          <td class="subject 6APG2">6APG2</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-            
-          <td class="time">17h05 - 18h10</td>
-          <td class="subject 6APG1">6APG1</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-    
-<script src="script.js"></script>
+
+    <noscript>
+        <p>JavaScript est nécessaire pour utiliser pleinement cette application.</p>
+    </noscript>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
