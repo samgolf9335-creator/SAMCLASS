@@ -270,14 +270,3 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
     color: white;
     margin-right: 10px;
 }
-.tag-texte { background-color: #e74c3c; }
-.tag-langue { background-color: #3498db; }
-.tag-production { background-color: #3499db; }
-.task-card {
-    background: white;
-    border: 1px solid #eee;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
