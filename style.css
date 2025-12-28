@@ -246,3 +246,16 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
     font-size: 14px;
     color: #333;
 }
+/* --- VERSION ÉLÈVE (LECTURE SEULE) --- */
+.mode-eleve .input-section, 
+.mode-eleve .task-card button,
+.mode-eleve #task-input,
+.mode-eleve #subject-select,
+.mode-eleve #date-input {
+    display: none !important; /* Cache tout ce qui permet d'ajouter ou supprimer */
+}
+
+/* On ajuste l'affichage pour les élèves */
+.mode-eleve .task-card {
+    border-left: 5px solid #2196f3; /* Une petite barre bleue pour faire joli */
+}
