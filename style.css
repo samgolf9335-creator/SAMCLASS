@@ -209,3 +209,40 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 .c-6APG3 { background-color: #f1c40f !important; color: #333 !important; font-weight: bold; text-align: center; }
 .c-6APG4 { background-color: #9b59b6 !important; color: white !important; font-weight: bold; text-align: center; 
 }
+/* Style pour l'organisation des dossiers */
+.folder-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.folder {
+    width: 150px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.folder:hover {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.folder-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.folder-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
