@@ -268,9 +268,9 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
     color: white;
     margin-right: 10px;
 }
-.tag-francais { background-color: #e74c3c; }
-.tag-maths { background-color: #3498db; }
-
+.tag-Texte de lecture { background-color: #e74c3c; }
+.tag-Langue { background-color: #3498db; }
+.tag-Production écrite { background-color: #88c52e; }
 .task-card {
     background: white;
     border: 1px solid #eee;
