@@ -259,23 +259,3 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 .mode-eleve .task-card {
     border-left: 5px solid #2196f3; /* Une petite barre bleue pour faire joli */
 }
-/* Étiquettes de matières pour les devoirs */
-.subject-tag {
-    padding: 4px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    margin-right: 10px;
-}
-.tag-Texte.de.lecture { background-color: #e74c3c; }
-.tag-Langue { background-color: #3498db; }
-.tag-Production.écrite { background-color: #3499db; }
-.task-card {
-    background: white;
-    border: 1px solid #eee;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
