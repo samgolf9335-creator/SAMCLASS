@@ -201,3 +201,33 @@ function deleteTask(id) {
 
 // Initialisation
 window.onload = saveAndRender;
+function showSection(sectionId) {
+    // 1. Sélectionner toutes les sections
+    const sections = document.querySelectorAll('.content-section');
+    
+    // 2. Les cacher toutes
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // 3. Afficher la section demandée
+    const activeSection = document.getElementById('section-' + sectionId);
+    if (activeSection) {
+        activeSection.style.display = 'block';
+    }
+
+    // 4. Mettre à jour le titre de la page
+    const titles = {
+        'accueil': 'Tableau de Bord',
+        'devoirs': 'Cahier de Textes',
+        'cours': 'Mes Cours',
+        'planning': 'Emploi du Temps'
+    };
+    document.getElementById('section-title').innerText = titles[sectionId];
+
+    // 5. Gérer le style visuel du menu (bouton bleu)
+    document.querySelectorAll('.sidebar li').forEach(li => {
+        li.classList.remove('active');
+    });
+    event.currentTarget.classList.add('active');
+}
