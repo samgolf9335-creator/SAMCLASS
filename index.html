@@ -23,85 +23,101 @@
                 <h1 id="section-title">Tableau de Bord</h1>
             </header>
 
-<section id="content-area">
-    <div id="section-accueil" class="content-section">
-        <div class="welcome-card">
-            <h2>Bonjour ! 👋</h2>
-            <p>Bienvenue sur votre espace SAMCLASS.</p>
-        </div>
+            <section id="content-area">
+                
+                <div id="section-accueil" class="content-section">
+                    <div class="welcome-card">
+                        <h2>Bonjour ! 👋</h2>
+                        <p>Bienvenue sur votre espace SAMCLASS.</p>
+                    </div>
+                </div>
+
+                <div id="section-devoirs" class="content-section" style="display:none;">
+                    <div class="input-section">
+                        <input type="text" id="task-input" placeholder="Nouveau devoir...">
+                        <select id="subject-select">
+                            <option value="maths">Mathématiques</option>
+                            <option value="francais">Français</option>
+                            <option value="histoire">Histoire-Géo</option>
+                        </select>
+                        <input type="date" id="date-input">
+                        <button onclick="addTask()">Ajouter</button>
+                    </div>
+                    <div id="task-list">
+                        </div>
+                </div>
+
+                <div id="section-cours" class="content-section" style="display:none;">
+                    <div class="welcome-card">
+                        <h2>📚 Mes Cours</h2>
+                        <p>Espace pour vos documents et PDF (En développement).</p>
+                    </div>
+                </div>
+
+                <div id="section-planning" class="content-section" style="display:none;">
+                    <div class="planning-container">
+                        <table class="timetable">
+                            <thead>
+                                <tr>
+                                    <th>Heure</th>
+                                    <th>Lundi</th>
+                                    <th>Mardi</th>
+                                    <th>Mercredi</th>
+                                    <th>Jeudi</th>
+                                    <th>Vendredi</th>
+                                    <th>Samedi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timetable-body">
+                                <tr>
+                                    <td class="time">08h30 - 09h35</td>
+                                    <td><span class="subject 6APG1">6APG1</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">09h40 - 10h45</td>
+                                    <td><span class="subject 6APG2">6APG2</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">10h55 - 12h</td>
+                                    <td><span class="subject 6APG3">6APG3</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">12h05 - 13h10</td>
+                                    <td><span class="subject 6APG4">6APG4</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">13h30 - 14h35</td>
+                                    <td><span class="subject 6APG4">6APG4</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">14h40 - 15h45</td>
+                                    <td><span class="subject 6APG3">6APG3</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">15h55 - 17h</td>
+                                    <td><span class="subject 6APG2">6APG2</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">17h05 - 18h10</td>
+                                    <td><span class="subject 6APG1">6APG1</span></td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </main>
     </div>
 
-    <div id="section-devoirs" class="content-section" style="display:none;">
-        <div class="input-section">
-            <input type="text" id="task-input" placeholder="Nouveau devoir...">
-            <select id="subject-select">
-                <option value="maths">Maths</option>
-                <option value="francais">Français</option>
-            </select>
-            <input type="date" id="date-input">
-            <button onclick="addTask()">Ajouter</button>
-        </div>
-        <div id="task-list"></div>
-    </div>
-
-    <div class="planning-container">
-    <table class="timetable">
-        <thead>
-            <tr>
-                <th>Heure</th>
-                <th>Lundi</th>
-                <th>Mardi</th>
-                <th>Mercredi</th>
-                <th>Jeudi</th>
-                <th>Vendredi</th>
-                <th>Samedi</th>
-            </tr>
-        </thead>
-        <tbody id="timetable-body">
-    <tr>
-        <td class="time">08h30 - 09h35</td>
-        <td><span class="subject 6APG1">6APG1</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">09h40 - 10h45</td>
-        <td><span class="subject 6APG2">6APG2</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">10h55 - 12h</td>
-        <td><span class="subject 6APG3">6APG3</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">12h05 - 13h10</td>
-        <td><span class="subject 6APG4">6APG4</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">13h30 - 14h35</td>
-        <td><span class="subject 6APG4">6APG4</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">14h40 - 15h45</td>
-        <td><span class="subject 6APG3">6APG3</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">15h55 - 17h</td>
-        <td><span class="subject 6APG2">6APG2</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td class="time">17h05 - 18h10</td>
-        <td><span class="subject 6APG1">6APG1</span></td>
-        <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-</tbody>
-    </table>
-</div>    
     <script src="script.js"></script>
 </body>
 </html>
-
