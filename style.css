@@ -96,12 +96,39 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 .timetable td { border: 1px solid #eee; padding: 10px; text-align: center; }
 .time { font-weight: bold; background: #f8f9fa; width: 140px; }
 
-/* Couleurs des Classes (6APG) */
-.subject { font-weight: bold; color: white; border-radius: 4px; padding: 6px; display: inline-block; width: 90%; }
-.6APG1 { background-color: #e74c3c; } /* Rouge */
-.6APG2 { background-color: #2ecc71; } /* Vert */
-.6APG3 { background-color: #f1c40f; color: #333 !important; } /* Jaune */
-.6APG4 { background-color: #9b59b6; } /* Violet */
+/* --- COULEURS DES CLASSES --- */
+
+/* 6APG1 en Rouge */
+.c-6APG1 { 
+    background-color: #e74c3c !important; 
+    color: white !important; 
+    font-weight: bold; 
+    text-align: center; 
+}
+
+/* 6APG2 en Vert */
+.c-6APG2 { 
+    background-color: #2ecc71 !important; 
+    color: white !important; 
+    font-weight: bold; 
+    text-align: center; 
+}
+
+/* 6APG3 en Jaune */
+.c-6APG3 { 
+    background-color: #f1c40f !important; 
+    color: #333 !important; /* Texte sombre pour que ce soit lisible sur le jaune */
+    font-weight: bold; 
+    text-align: center; 
+}
+
+/* 6APG4 en Violet */
+.c-6APG4 { 
+    background-color: #9b59b6 !important; 
+    color: white !important; 
+    font-weight: bold; 
+    text-align: center; 
+}
 
 /* --- Cahier de Textes --- */
 .input-section { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
