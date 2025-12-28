@@ -117,3 +117,14 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 .6APG2 { background-color: #2ecc71; } /* Vert */
 .6APG3 { background-color: #f1c40f; color: black; } /* Jaune */
 .6APG4 { background-color: #9b59b6; } /* Violet */
+.subject {
+    display: block;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+.6APG1 { background-color: #e74c3c; } /* Rouge */
+.6APG2 { background-color: #2ecc71; } /* Vert */
+.6APG3 { background-color: #f1c40f; color: black; } /* Jaune */
+.6APG4 { background-color: #9b59b6; } /* Violet */
