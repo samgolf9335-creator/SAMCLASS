@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMCLASS - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">SAMCLASS</div>
+            <ul>
+                <li class="active" onclick="showSection('accueil')">🏠 Accueil</li>
+                <li onclick="showSection('devoirs')">📝 Cahier de Textes</li>
+                <li onclick="showSection('cours')">📚 Mes Cours</li>
+                <li onclick="showSection('planning')">📅 Emploi du Temps</li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header>
+                <h1 id="section-title">Tableau de Bord</h1>
+            </header>
+
+            <section id="content-area">
+                <div class="welcome-card">
+                    <h2>Bonjour ! 👋</h2>
+                    <p>Bienvenue sur votre espace SAMCLASS. Que voulez-vous faire aujourd'hui ?</p>
+                </div>
+                
+                </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
