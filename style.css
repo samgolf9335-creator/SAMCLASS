@@ -36,3 +36,39 @@ header { margin-bottom: 30px; border-bottom: 2px solid #ddd; padding-bottom: 10p
 .input-section input, .input-section select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
 .input-section button { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
 .task-card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 5px solid #3498db; display: flex; justify-content: space-between; }
+/* --- Styles de Base --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f0f2f5; }
+.app-container { display: flex; min-height: 100vh; }
+
+/* --- Sidebar --- */
+.sidebar { width: 260px; background-color: #1a2a3a; color: white; padding: 20px; flex-shrink: 0; }
+.sidebar .logo { font-size: 24px; font-weight: bold; color: #3498db; margin-bottom: 40px; text-align: center; }
+.sidebar ul { list-style: none; }
+.sidebar li { padding: 15px; margin-bottom: 10px; cursor: pointer; border-radius: 8px; transition: 0.3s; }
+.sidebar li:hover { background: #2c3e50; }
+.sidebar li.active { background: #3498db; color: white; }
+
+/* --- Contenu Principal --- */
+.main-content { flex-grow: 1; padding: 30px; }
+header { margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+.welcome-card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+
+/* --- Emploi du Temps --- */
+.planning-container { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.timetable { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.timetable th { background: #34495e; color: white; padding: 12px; border: 1px solid #ddd; }
+.timetable td { border: 1px solid #eee; padding: 12px; text-align: center; }
+.time { font-weight: bold; background: #f8f9fa; width: 150px; }
+
+/* Couleurs des classes (6APG) */
+.subject { font-weight: bold; color: white; border-radius: 5px; padding: 5px; display: block; }
+.subject.6APG1 { background-color: #e74c3c; } /* Rouge */
+.subject.6APG2 { background-color: #2ecc71; } /* Vert */
+.subject.6APG3 { background-color: #f1c40f; color: #333; } /* Jaune */
+.subject.6APG4 { background-color: #9b59b6; } /* Violet */
+
+/* --- Cahier de Textes --- */
+.input-section { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.input-section input, .input-section select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+.task-card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 6px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
