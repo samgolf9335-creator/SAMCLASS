@@ -138,3 +138,66 @@ function deleteTask(id) {
 
 // Charger les devoirs au démarrage
 saveAndRender();
+// --- FONCTION DE NAVIGATION ---
+function showSection(sectionId) {
+    // Masquer toutes les sections
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Afficher la section demandée
+    const target = document.getElementById('section-' + sectionId);
+    if (target) {
+        target.style.display = 'block';
+    }
+
+    // Mettre à jour le titre
+    const titles = { 'accueil': 'Tableau de Bord', 'devoirs': 'Cahier de Textes', 'cours': 'Mes Cours', 'planning': 'Emploi du Temps' };
+    document.getElementById('section-title').innerText = titles[sectionId] || "SAMCLASS";
+
+    // Gérer l'état actif du menu
+    document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+
+// --- GESTION DES DEVOIRS ---
+let tasks = JSON.parse(localStorage.getItem('samclass_tasks')) || [];
+
+function addTask() {
+    const text = document.getElementById('task-input').value;
+    const type = document.getElementById('subject-select').value;
+    const date = document.getElementById('date-input').value;
+
+    if (!text || !date) return alert("Veuillez remplir tous les champs !");
+
+    const newTask = { id: Date.now(), text, type, date };
+    tasks.push(newTask);
+    saveAndRender();
+    document.getElementById('task-input').value = "";
+}
+
+function saveAndRender() {
+    localStorage.setItem('samclass_tasks', JSON.stringify(tasks));
+    const list = document.getElementById('task-list');
+    list.innerHTML = '';
+    tasks.forEach(task => {
+        const card = document.createElement('div');
+        card.className = 'task-card';
+        card.innerHTML = `
+            <div>
+                <strong>[${task.type.toUpperCase()}]</strong> ${task.text} <br>
+                <small>📅 Pour le : ${task.date}</small>
+            </div>
+            <button onclick="deleteTask(${task.id})" style="border:none; background:none; cursor:pointer; font-size:18px;">❌</button>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function deleteTask(id) {
+    tasks = tasks.filter(t => t.id !== id);
+    saveAndRender();
+}
+
+// Initialisation
+window.onload = saveAndRender;
