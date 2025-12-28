@@ -254,3 +254,10 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 .mode-eleve #date-input {
     display: none !important; /* Cache tout ce qui permet d'ajouter ou supprimer */
 }
+/* Cette règle cache les formulaires d'ajout et les boutons supprimer */
+.mode-eleve .input-section, 
+.mode-eleve .btn-delete,
+.mode-eleve button[onclick^="deleteTask"],
+.mode-eleve button[onclick^="addTask"] {
+    display: none !important;
+}
