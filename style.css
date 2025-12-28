@@ -90,3 +90,9 @@ body { background-color: #f4f7f6; }
 .anglais { background-color: #9C27B0 !important; }
 .sport { background-color: #795548 !important; 
 }
+@media print {
+    .timetable {
+        -webkit-print-color-adjust: exact; /* Force l'impression des couleurs sur Chrome/Edge */
+        print-color-adjust: exact;
+    }
+}
