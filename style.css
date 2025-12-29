@@ -281,3 +281,65 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
+/* --- STYLE DES DEVOIRS FIXES --- */
+
+/* Conteneur principal de la liste */
+#task-list-fixe {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espace entre les cartes */
+}
+
+/* La carte de chaque devoir */
+.task-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 6px solid #ccc; /* Bordure par défaut */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.task-card:hover {
+    transform: scale(1.01); /* Effet de zoom léger au survol */
+}
+
+/* Style des étiquettes (Tags) */
+.subject-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* Couleurs spécifiques par catégorie */
+.tag-texte { background-color: #3498db; }      /* Bleu pour le texte */
+.tag-langue { background-color: #2ecc71; }     /* Vert pour la langue */
+.tag-production { background-color: #e67e22; } /* Orange pour la production */
+
+/* Bordures de cartes assorties aux étiquettes */
+.task-card:has(.tag-texte) { border-left-color: #3498db; }
+.task-card:has(.tag-langue) { border-left-color: #2ecc71; }
+.task-card:has(.tag-production) { border-left-color: #e67e22; }
+
+/* Date du devoir */
+.task-date {
+    display: block;
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* Texte du devoir */
+.task-text {
+    color: #2c3e50;
+    line-height: 1.5;
+    font-size: 1.05em;
+    margin: 0;
+}
