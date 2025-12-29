@@ -108,3 +108,20 @@ function deleteTask(id) {
 // ==========================================
 // On affiche les devoirs dès que la page est chargée
 window.onload = saveAndRender;
+// Afficher le bouton quand on descend de 300px
+window.onscroll = function() {
+    const btn = document.getElementById("back-to-top");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+};
+
+// Fonction pour remonter en haut doucement
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
