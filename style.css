@@ -417,3 +417,8 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 .link-icon {
     font-size: 1.2rem;
 }
+/* Optionnel : donner une couleur au survol spécifique pour le dictionnaire */
+.link-card[href*="lerobert"]:hover {
+    border-color: #e67e22; 
+    color: #e67e22;
+}
