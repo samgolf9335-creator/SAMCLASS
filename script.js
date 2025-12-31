@@ -1,3 +1,39 @@
+let isAuthenticated = false; // Par défaut, l'élève n'est pas connecté
+
+function checkPassword() {
+    const mdp = document.getElementById('class-password').value;
+    const correctMdp = "SAM2024"; // CHOISIS TON MOT DE PASSE ICI
+
+    if (mdp === correctMdp) {
+        isAuthenticated = true;
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('welcome-message').style.display = 'block';
+        alert("Connexion réussie !");
+    } else {
+        document.getElementById('login-error').style.display = 'block';
+    }
+}
+
+// MODIFIE ta fonction showSection existante pour ajouter cette sécurité :
+function showSection(sectionId) {
+    // Si l'élève n'est pas connecté et essaie de quitter l'accueil
+    if (!isAuthenticated && sectionId !== 'accueil') {
+        alert("Veuillez vous connecter sur la page d'accueil d'abord.");
+        return;
+    }
+
+    // --- Ton code de navigation habituel commence ici ---
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(s => s.style.display = 'none');
+    const target = document.getElementById('section-' + sectionId);
+    if (target) target.style.display = 'block';
+
+    const titles = {'accueil': 'Tableau de Bord', 'devoirs': 'Cahier de Textes', 'cours': 'Mes Cours', 'planning': 'Emploi du Temps'};
+    document.getElementById('section-title').innerText = titles[sectionId] || 'SAMCLASS';
+
+    document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
+    if (event && event.currentTarget) event.currentTarget.classList.add('active');
+}
 // --- NAVIGATION ---
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.content-section');
