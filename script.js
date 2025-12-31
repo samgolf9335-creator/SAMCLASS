@@ -1,14 +1,20 @@
 let isAuthenticated = false; 
 
-// --- CONNEXION ---
 function checkPassword() {
     const mdp = document.getElementById('class-password').value;
     const correctMdp = "SAM2024"; 
 
     if (mdp === correctMdp) {
         isAuthenticated = true;
+        
+        // On cache le formulaire et on montre le message de bienvenue
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('welcome-message').style.display = 'block';
+        
+        // FORCE l'affichage du contenu de la section accueil
+        document.getElementById('section-accueil').style.display = 'block';
+        
+        alert("Connexion réussie !");
     } else {
         document.getElementById('login-error').style.display = 'block';
     }
