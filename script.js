@@ -1,17 +1,19 @@
 let isAuthenticated = false; 
 
-// --- 1. CHARGEMENT AU DÉMARRAGE ---
-// Cette fonction s'exécute dès que la page est chargée
+// 1. CHARGEMENT AUTOMATIQUE
 window.onload = function() {
+    console.log("Chargement des devoirs...");
     const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const list = document.getElementById('task-list');
     
-    savedTasks.forEach(task => {
-        renderTask(task.text, task.subject, task.date);
-    });
+    if (list) {
+        savedTasks.forEach(task => {
+            renderTask(task.text, task.subject, task.date);
+        });
+    }
 };
 
-// --- 2. CONNEXION ---
+// 2. CONNEXION
 function checkPassword() {
     const mdp = document.getElementById('class-password').value;
     if (mdp === "SAM2024") {
@@ -19,16 +21,15 @@ function checkPassword() {
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('welcome-message').style.display = 'block';
         document.getElementById('section-accueil').style.display = 'block';
-        alert("Connexion réussie !");
     } else {
         alert("Mot de passe incorrect.");
     }
 }
 
-// --- 3. NAVIGATION ---
+// 3. NAVIGATION
 function showSection(sectionId) {
     if (!isAuthenticated && sectionId !== 'accueil') {
-        alert("Veuillez d'abord entrer le mot de passe.");
+        alert("Veuillez entrer le mot de passe sur l'accueil.");
         return;
     }
     const sections = document.querySelectorAll('.content-section');
@@ -37,7 +38,7 @@ function showSection(sectionId) {
     if (target) target.style.display = 'block';
 }
 
-// --- 4. GESTION DES DEVOIRS ---
+// 4. AJOUTER ET SAUVEGARDER
 function addTask() {
     const input = document.getElementById('task-input');
     const subject = document.getElementById('subject-select');
@@ -45,24 +46,23 @@ function addTask() {
 
     if (input.value.trim() === "") return;
 
-    // Afficher le devoir
+    // Affichage immédiat
     renderTask(input.value, subject.value, dateInput.value);
 
-    // Sauvegarder dans la mémoire du navigateur (LocalStorage)
+    // Sauvegarde
     const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     savedTasks.push({ text: input.value, subject: subject.value, date: dateInput.value });
     localStorage.setItem('tasks', JSON.stringify(savedTasks));
 
     // Mise à jour de l'accueil
-    const latestNews = document.getElementById('latest-news');
-    if (latestNews) {
-        latestNews.innerHTML = `<p><strong>📝 Nouveau :</strong> ${subject.value.toUpperCase()} - ${input.value}</p>`;
+    const news = document.getElementById('latest-news');
+    if (news) {
+        news.innerHTML = `<p><strong>📝 Dernier devoir :</strong> ${input.value}</p>`;
     }
 
     input.value = ""; 
 }
 
-// Fonction pour dessiner un devoir sur l'écran
 function renderTask(text, subject, date) {
     const list = document.getElementById('task-list');
     const item = document.createElement('div');
@@ -79,10 +79,7 @@ function renderTask(text, subject, date) {
 }
 
 function deleteTask(element, text) {
-    // Supprimer de l'écran
     element.parentElement.remove();
-    
-    // Supprimer de la mémoire
     let savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     savedTasks = savedTasks.filter(t => t.text !== text);
     localStorage.setItem('tasks', JSON.stringify(savedTasks));
