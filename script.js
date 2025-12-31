@@ -7,56 +7,52 @@ function checkPassword() {
     if (mdp === correctMdp) {
         isAuthenticated = true;
         
-        // On cache le formulaire et on montre le message de bienvenue
+        // 1. On cache le formulaire de login
         document.getElementById('login-form').style.display = 'none';
+        
+        // 2. On montre le message de bienvenue avec les rappels (futur simple, quartier)
         document.getElementById('welcome-message').style.display = 'block';
         
-        // FORCE l'affichage du contenu de la section accueil
+        // 3. On s'assure que la section accueil elle-même est visible
         document.getElementById('section-accueil').style.display = 'block';
         
-        alert("Connexion réussie !");
+        alert("Connexion réussie ! Vous pouvez maintenant naviguer dans le menu.");
     } else {
-        document.getElementById('login-error').style.display = 'block';
+        alert("Mot de passe incorrect.");
     }
 }
 
-// --- NAVIGATION ---
 function showSection(sectionId) {
+    // Bloquer la navigation si non connecté
     if (!isAuthenticated && sectionId !== 'accueil') {
-        alert("Veuillez vous connecter sur la page d'accueil d'abord.");
+        alert("Veuillez d'abord entrer le mot de passe sur l'accueil.");
         return;
     }
 
+    // Masquer absolument toutes les sections
     const sections = document.querySelectorAll('.content-section');
-    sections.forEach(s => s.style.display = 'none');
-    
+    sections.forEach(s => {
+        s.style.display = 'none';
+    });
+
+    // Afficher la section demandée
     const target = document.getElementById('section-' + sectionId);
-    if (target) target.style.display = 'block';
+    if (target) {
+        target.style.display = 'block';
+    }
 
-    const titles = {'accueil': 'Tableau de Bord', 'devoirs': 'Cahier de Textes', 'cours': 'Mes Cours', 'planning': 'Emploi du Temps'};
-    document.getElementById('section-title').innerText = titles[sectionId] || 'SAMCLASS';
-
+    // Gérer l'apparence du menu latéral
     document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
-    if (event && event.currentTarget) event.currentTarget.classList.add('active');
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
 }
 
-// --- DOSSIERS & DEVOIRS ---
+// Fonction pour les dossiers de cours (Lecture, Langue, Évaluations)
 function toggleFolder(folderId) {
     const target = document.getElementById(folderId);
-    document.querySelectorAll('.document-list').forEach(list => {
-        if (list.id !== folderId) list.style.display = 'none';
-    });
-    if (target) target.style.display = (target.style.display === 'none' || target.style.display === '') ? 'block' : 'none';
-}
-
-function addTask() {
-    const input = document.getElementById('task-input');
-    const subject = document.getElementById('subject-select');
-    const list = document.getElementById('task-list');
-    if (input.value.trim() === "") return;
-    const item = document.createElement('div');
-    item.className = "task-item";
-    item.innerHTML = `<strong>[${subject.value.toUpperCase()}]</strong> ${input.value} <button onclick="this.parentElement.remove()">X</button>`;
-    list.appendChild(item);
-    input.value = "";
+    if (target) {
+        const isHidden = (target.style.display === 'none' || target.style.display === '');
+        target.style.display = isHidden ? 'block' : 'none';
+    }
 }
