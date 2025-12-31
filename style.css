@@ -453,3 +453,37 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
 #welcome-message strong {
     color: #3498db;
 }
+/* Style des cartes de contenu */
+.welcome-card, .content-section > div {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border-left: 5px solid #3498db; /* Bordure bleue par défaut */
+}
+
+/* Couleur spéciale pour la section devoirs fixes (en vert) */
+.task-fixed {
+    border-left: 5px solid #2ecc71 !important;
+}
+
+/* Style des boutons de téléchargement (Mes Cours) */
+.link-card {
+    display: block;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.link-card:hover {
+    background: #eef2f7;
+    border-color: #3498db;
+    transform: translateX(5px);
+}
