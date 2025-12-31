@@ -444,3 +444,12 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
     border: 1px solid #fbc02d;
     background-color: #fffde7;
 }
+#welcome-message ul {
+    list-style-type: "📍 "; /* Utilise une icône de localisation pour les points */
+    padding-left: 20px;
+    color: #555;
+}
+
+#welcome-message strong {
+    color: #3498db;
+}
