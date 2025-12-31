@@ -42,71 +42,52 @@
                         <p><strong>💡 Rappel de la semaine :</strong></p>
                         <ul style="margin-left: 20px; line-height: 1.6;">
                             <li>N'oubliez pas de réviser le <strong>futur simple</strong> du verbe <em>aller</em>.</li>
-                            <li>Entraînez-vous à situer les commerces du <strong>quartier</strong> (la boulangerie, l'épicerie...).</li>
-                            <li>Utilisez bien les indicateurs de lieu : <em>en face de</em>, <em>à côté de</em> ou <em>loin de</em>.</li>
+                            <li>Entraînez-vous à situer les commerces du <strong>quartier</strong>.</li>
+                            <li>Utilisez bien les indicateurs de lieu : <em>en face de</em>, <em>à côté de</em>...</li>
                         </ul>
-                        <p style="margin-top: 15px;">Rendez-vous dans l'onglet <strong>"Mes Cours"</strong> pour télécharger votre évaluation !</p>
                     </div>
                 </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
-                    <div class="input-section" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                        <input type="text" id="task-input" placeholder="Nouveau devoir..." style="padding: 8px; width: 200px;">
-                        <select id="subject-select" style="padding: 8px;">
+                    <div class="input-section">
+                        <input type="text" id="task-input" placeholder="Nouveau devoir...">
+                        <select id="subject-select">
                             <option value="langue">Langue</option>
                             <option value="lecture">Lecture</option>
                             <option value="production">Production écrite</option>
                         </select>
-                        <input type="date" id="date-input" style="padding: 8px;">
-                        <button onclick="addTask()" style="padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Ajouter</button>
+                        <input type="date" id="date-input">
+                        <button onclick="addTask()">Ajouter</button>
                     </div>
-                    <div id="task-list" style="margin-top: 20px;">
-                        </div>
+                    <div id="task-list" style="margin-top: 20px;"></div>
                 </div>
 
                 <div id="section-cours" class="content-section" style="display:none;">
                     <div class="welcome-card">
                         <h2>📚 Mes Cours de Français</h2>
-                        <p>Cliquez sur un dossier pour voir vos documents.</p>
                         <div class="folder-container">
-                            <div class="folder" onclick="toggleFolder('folder-lecture')">
-                                <div class="folder-icon">📂</div>
-                                <div class="folder-name">Texte de lecture</div>
-                            </div>
-                            <div class="folder" onclick="toggleFolder('folder-langue')">
-                                <div class="folder-icon">📂</div>
-                                <div class="folder-name">Langue</div>
-                            </div>
-                            <div class="folder" onclick="toggleFolder('folder-production')">
-                                <div class="folder-icon">📂</div>
-                                <div class="folder-name">Production écrite</div>
-                            </div>
-                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">
-                                <div class="folder-icon">📝</div>
-                                <div class="folder-name">Évaluations</div>
-                            </div>
+                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
+                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
+                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
+                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
                         </div>
 
                         <div id="folder-lecture" class="document-list" style="display:none;">
-                            <h4>📖 Lectures disponibles :</h4>
                             <a href="#" class="link-card">📄 Texte : La ville de demain</a>
                         </div>
-
                         <div id="folder-langue" class="document-list" style="display:none;">
-                            <h4>⚙️ Grammaire & Conjugaison :</h4>
                             <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
                         </div>
-
                         <div id="folder-production" class="document-list" style="display:none;">
-                            <h4>✍️ Ateliers d'écriture :</h4>
                             <a href="#" class="link-card">📝 Décrire son quartier</a>
                         </div>
-
                         <div id="folder-eval" class="document-list" style="display:none;">
-                            <h4>📋 Contrôles :</h4>
-                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">
-                                <span>📥 Télécharger : Contrôle Continu N°1 (Mon quartier)</span>
-                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
+                        </div>
+
+                        <div class="useful-links-section" style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+                            <h3>🔗 Outils</h3>
+                            <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card" style="display:inline-block; text-decoration:none; color:#333;">📖 <span>Dictionnaire Le Robert</span></a>
                         </div>
                     </div>
                 </div>
@@ -115,27 +96,18 @@
                     <div class="planning-container">
                         <table class="timetable">
                             <thead>
-                                <tr>
-                                    <th>Heure</th>
-                                    <th>Lundi</th>
-                                    <th>Mardi</th>
-                                    <th>Mercredi</th>
-                                    <th>Jeudi</th>
-                                    <th>Vendredi</th>
-                                    <th>Samedi</th>
-                                </tr>
+                                <tr><th>Heure</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th></tr>
                             </thead>
-                            <tbody id="timetable-body">
-                                <tr>
-                                    <td class="time">08h30 - 09h35</td>
-                                    <td></td>
-                                    <td class="c-6APG4">6APG4</td>
-                                    <td></td>
-                                    <td class="c-6APG4">6APG4</td>
-                                    <td class="c-6APG1">6APG1</td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
+                            <tbody>
+                                <tr><td class="time">08h30-09h35</td><td></td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td><td></td></tr>
+                                <tr><td class="time">09h40-10h45</td><td></td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td class="c-6APG2">6APG2</td><td></td></tr>
+                                <tr><td class="time">10h55-12h00</td><td></td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td class="c-6APG3">6APG3</td><td></td></tr>
+                                <tr><td class="time">12h05-13h10</td><td></td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td class="c-6APG4">6APG4</td><td></td></tr>
+                                <tr><td class="time">13h30-14h35</td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td></td><td></td><td class="c-6APG4">6APG4</td></tr>
+                                <tr><td class="time">14h40-15h45</td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td></td><td></td><td class="c-6APG3">6APG3</td></tr>
+                                <tr><td class="time">15h55-17h00</td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td></td><td></td><td class="c-6APG2">6APG2</td></tr>
+                                <tr><td class="time">17h05-18h10</td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td></td><td></td><td class="c-6APG1">6APG1</td></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
