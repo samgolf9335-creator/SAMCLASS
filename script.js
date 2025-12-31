@@ -1,18 +1,14 @@
-// --- GESTION DES SECTIONS ---
+// --- 1. NAVIGATION ENTRE LES SECTIONS ---
 function showSection(sectionId) {
-    // Cache toutes les sections
+    // On cache toutes les sections (Accueil, Devoirs, Cours...)
     const sections = document.querySelectorAll('.content-section');
-    sections.forEach(section => {
-        section.style.display = 'none';
-    });
+    sections.forEach(s => s.style.display = 'none');
 
-    // Affiche la section demandée
-    const targetSection = document.getElementById('section-' + sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'block';
-    }
+    // On affiche la section sélectionnée
+    const target = document.getElementById('section-' + sectionId);
+    if (target) target.style.display = 'block';
 
-    // Met à jour le titre
+    // On change le titre du Header
     const titles = {
         'accueil': 'Tableau de Bord',
         'devoirs': 'Cahier de Textes',
@@ -21,59 +17,61 @@ function showSection(sectionId) {
     };
     document.getElementById('section-title').innerText = titles[sectionId] || 'SAMCLASS';
 
-    // Met à jour le menu actif
+    // On met à jour l'apparence du menu à gauche
     document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
-    // Utilisation de event pour cibler l'élément cliqué
-    if (event) event.currentTarget.classList.add('active');
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
 }
 
-// --- GESTION DU CAHIER DE TEXTES (DEVOIRS) ---
+// --- 2. GESTION DU CAHIER DE TEXTES ---
 function addTask() {
-    const taskInput = document.getElementById('task-input');
-    const subjectSelect = document.getElementById('subject-select');
-    const dateInput = document.getElementById('date-input');
-    const taskList = document.getElementById('task-list');
+    const input = document.getElementById('task-input');
+    const subject = document.getElementById('subject-select');
+    const date = document.getElementById('date-input');
+    const list = document.getElementById('task-list');
 
-    if (taskInput.value === '') {
-        alert("Veuillez entrer un devoir !");
+    if (input.value.trim() === "") {
+        alert("Veuillez saisir un devoir.");
         return;
     }
 
-    // Création de l'élément de devoir
-    const taskDiv = document.createElement('div');
-    taskDiv.className = 'task-item'; // Assure-toi d'avoir ce style dans ton CSS
-    taskDiv.style = "background: white; padding: 10px; margin-top: 10px; border-radius: 8px; border-left: 5px solid #3498db; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);";
+    const item = document.createElement('div');
+    item.style = "background:white; padding:15px; margin-top:10px; border-radius:8px; border-left:5px solid #3498db; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 4px rgba(0,0,0,0.1);";
     
-    taskDiv.innerHTML = `
+    item.innerHTML = `
         <div>
-            <strong>[${subjectSelect.value.toUpperCase()}]</strong> ${taskInput.value} 
-            <br><small>Pour le : ${dateInput.value || 'Non précisé'}</small>
+            <strong>[${subject.value.toUpperCase()}]</strong> ${input.value}
+            <br><small style="color:#666">📅 Pour le : ${date.value || 'Non précisé'}</small>
         </div>
-        <button onclick="this.parentElement.remove()" style="background:#ff7675; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Supprimer</button>
+        <button onclick="this.parentElement.remove()" style="background:#ff7675; color:white; border:none; padding:8px 12px; border-radius:5px; cursor:pointer;">Supprimer</button>
     `;
 
-    taskList.appendChild(taskDiv);
-
-    // Réinitialisation des champs
-    taskInput.value = '';
+    list.appendChild(item);
+    input.value = ""; // On vide le champ après l'ajout
 }
 
-// --- GESTION DES DOSSIERS DE COURS ---
+// --- 3. OUVERTURE DES DOSSIERS (Correction de ton erreur) ---
 function toggleFolder(folderId) {
-    const targetList = document.getElementById(folderId);
     const allLists = document.querySelectorAll('.document-list');
+    const target = document.getElementById(folderId);
 
-    if (!targetList) return;
+    if (!target) {
+        console.error("Erreur : La liste avec l'ID " + folderId + " est introuvable.");
+        return;
+    }
 
+    // On ferme tous les autres dossiers ouverts
     allLists.forEach(list => {
         if (list.id !== folderId) {
             list.style.display = 'none';
         }
     });
 
-    if (targetList.style.display === 'none' || targetList.style.display === '') {
-        targetList.style.display = 'block';
+    // On affiche ou cache le dossier cliqué
+    if (target.style.display === 'none' || target.style.display === '') {
+        target.style.display = 'block';
     } else {
-        targetList.style.display = 'none';
+        target.style.display = 'none';
     }
 }
