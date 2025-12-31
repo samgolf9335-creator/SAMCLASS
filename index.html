@@ -52,45 +52,52 @@
         <p>Cliquez sur un dossier pour voir vos documents.</p>
         
         <div class="folder-container">
-            <div class="folder" onclick="alert('Dossier Lecture bientôt disponible')">
+            <div class="folder" onclick="toggleFolder('folder-lecture')">
                 <div class="folder-icon">📂</div>
                 <div class="folder-name">Texte de lecture</div>
             </div>
 
-            <div class="folder" onclick="alert('Dossier Langue bientôt disponible')">
+            <div class="folder" onclick="toggleFolder('folder-langue')">
                 <div class="folder-icon">📂</div>
                 <div class="folder-name">Langue</div>
             </div>
 
-            <div class="folder" onclick="alert('Dossier Production bientôt disponible')">
+            <div class="folder" onclick="toggleFolder('folder-production')">
                 <div class="folder-icon">📂</div>
                 <div class="folder-name">Production écrite</div>
             </div>
+
+            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">
+                <div class="folder-icon">📝</div>
+                <div class="folder-name">Évaluations</div>
+            </div>
+        </div>
+
+        <div id="folder-lecture" class="document-list" style="display:none;">
+            <h4>📖 Lectures disponibles :</h4>
+            <a href="#" class="link-card">📄 Texte : La ville de demain</a>
+        </div>
+
+        <div id="folder-langue" class="document-list" style="display:none;">
+            <h4>⚙️ Grammaire & Conjugaison :</h4>
+            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
+        </div>
+
+        <div id="folder-production" class="document-list" style="display:none;">
+            <h4>✍️ Ateliers d'écriture :</h4>
+            <a href="#" class="link-card">📝 Décrire son quartier</a>
+        </div>
+
+        <div id="folder-eval" class="document-list" style="display:none;">
+            <h4>📋 Contrôles :</h4>
+            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">
+                <span>📥 Télécharger : Contrôle Continu N°1 (Mon quartier)</span>
+            </a>
         </div>
 
         <div class="useful-links-section">
-            <h3 style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">🔗 Liens & Outils Externes</h3>
+            <h3 style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">🔗 Outils</h3>
             <div class="links-grid">
-                <a href="https://www.google.com" target="_blank" class="link-card">
-                    <span class="link-icon">🌐</span>
-                    <span>Recherche Google</span>
-                </a>
-                <a href="https://www.conjugaison.com/" target="_blank" class="link-card">
-    <span class="link-icon">✍️</span>
-    <span>Conjugaison</span>
-</a>
-                <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">
-    <span class="link-icon">📝</span>
-    <span>Télécharger : Contrôle Continu N°1</span>
-</a>
-<a href="https://www.synonymes.com/" target="_blank" class="link-card">
-    <span class="link-icon">🔄</span>
-    <span>Synonymes</span>
-</a>
-                <a href="https://votre-ent.com" target="_blank" class="link-card">
-                    <span class="link-icon">🏫</span>
-                    <span>Espace Élève / ENT</span>
-                </a>
                 <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card">
                     <span class="link-icon">📖</span>
                     <span>Dictionnaire</span>
@@ -99,7 +106,7 @@
         </div>
     </div>
 </div>
-                
+               
                 <div id="section-planning" class="content-section" style="display:none;">
                     <div class="planning-container">
                         <table class="timetable">
