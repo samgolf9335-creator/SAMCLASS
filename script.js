@@ -125,3 +125,22 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+function toggleFolder(folderId) {
+    // Liste de tous les dossiers de documents
+    const allFolders = document.querySelectorAll('.document-list');
+    
+    // On cache tous les autres dossiers avant d'ouvrir le nouveau
+    allFolders.forEach(folder => {
+        if (folder.id !== folderId) {
+            folder.style.display = 'none';
+        }
+    });
+
+    // On affiche ou cache le dossier cliqué
+    const target = document.getElementById(folderId);
+    if (target.style.display === 'none') {
+        target.style.display = 'block';
+    } else {
+        target.style.display = 'none';
+    }
+}
