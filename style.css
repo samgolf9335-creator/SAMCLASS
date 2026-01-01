@@ -36,6 +36,7 @@ header { margin-bottom: 30px; border-bottom: 2px solid #ddd; padding-bottom: 10p
 .input-section input, .input-section select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
 .input-section button { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
 .task-card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 5px solid #3498db; display: flex; justify-content: space-between; }
+
 /* --- Styles de Base --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 body { background-color: #f0f2f5; }
@@ -72,6 +73,7 @@ header { margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10p
 .input-section { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .input-section input, .input-section select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
 .task-card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 6px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
 /* --- Base et Layout --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body { background-color: #f4f7f9; display: flex; height: 100vh; overflow: hidden; }
