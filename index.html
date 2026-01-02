@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMCLASS - Dashboard</title>
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="mode-eleve">
@@ -28,20 +27,22 @@
             <section id="content-area">
                 <div id="section-accueil" class="content-section">
                     <div class="welcome-card" id="login-form">
-                        <h2>🔒 Espace Sécurisé</h2>
-                        <p>Entrez le code de la classe pour accéder à vos documents.</p>
-                        <div style="margin-top: 20px;">
-                            <input type="password" id="class-password" placeholder="Mot de passe..." style="padding: 10px; border-radius: 5px; border: 1px solid #ddd; width: 200px;">
-                            <button onclick="checkPassword()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Connexion</button>
+                        <div class="card-header">
+                            <span class="lock-icon">🔒</span>
+                            <h2>Espace Sécurisé</h2>
                         </div>
-                        <p id="login-error" style="color: red; display: none; margin-top: 10px;">❌ Code incorrect.</p>
+                        <p>Entrez le code de la classe pour accéder à vos documents.</p>
+                        <div class="login-row">
+                            <input type="password" id="class-password" placeholder="Mot de passe...">
+                            <button onclick="checkPassword()" class="btn-primary">Connexion</button>
+                        </div>
+                        <p id="login-error" class="error-msg">❌ Code incorrect.</p>
                     </div>
 
-                    <div class="welcome-card" id="welcome-message" style="display: none;">
-                        <h2>Bonjour chers élèves ! 👋</h2>
-                        <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
-                        <div id="latest-news" style="margin-top:20px; padding:15px; background:#f0f9ff; border-radius:8px; border-left:5px solid #3498db;">
-                            <p><strong>📢 Dernières nouvelles :</strong> Vos bulletins de la Période 2 sont disponibles dans l'onglet "Mes Notes".</p>
+                    <div id="welcome-message" style="display: none;">
+                        <div class="welcome-card">
+                            <h2>Bonjour chers élèves ! 👋</h2>
+                            <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
                         </div>
                     </div>
                 </div>
@@ -49,52 +50,26 @@
                 <div id="section-notes" class="content-section" style="display:none;">
                     <div class="welcome-card">
                         <h2>📊 Mes Résultats - Premier Semestre</h2>
-                        <p>Consultez votre bulletin détaillé (PO, CO, LC, LF, PE, OL).</p>
-                        <div style="margin-top:30px; text-align:center;">
-                            <button class="grid-btn" onclick="window.open('VOTRE_LIEN_DRIVE_PARTAGE', '_blank')" style="background-color: #e67e22; padding: 20px; width: 80%; font-weight: bold;">
-                                📂 Ouvrir mon dossier de bulletins
+                        <p>Voici votre bulletin détaillé par compétence.</p>
+                        <div class="bulletin-box">
+                            <button class="btn-download" onclick="window.open('VOTRE_LIEN_DRIVE', '_blank')">
+                                📂 Consulter mes bulletins (PDF)
                             </button>
-                            <p style="margin-top:15px; font-size:0.9rem; color:#666;">Mise à jour : Janvier 2026</p>
                         </div>
                     </div>
                 </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
-                    <div class="welcome-card">
-                        <h2>📝 Travail à faire</h2>
-                        <div class="task-card">
-                            <span class="subject-tag tag-texte">Texte</span>
-                            <span class="task-date">📅 Mardi 30 Décembre</span>
-                            <p>Lire "La meilleure matière" p.46.</p>
-                        </div>
-                        <div class="task-card">
-                            <span class="subject-tag tag-langue">Langue</span>
-                            <span class="task-date">📅 Mercredi 31 Décembre</span>
-                            <p>Exercices 1 et 2 p.47.</p>
-                        </div>
+                    <h2>📝 Travail à faire</h2>
+                    <div class="task-card border-blue">
+                        <span class="tag blue">TEXTE</span>
+                        <span class="date">📅 Mardi 30 Décembre</span>
+                        <p>Lire "La meilleure matière" p.46.</p>
                     </div>
-                </div>
-
-                <div id="section-cours" class="content-section" style="display:none;">
-                    <div class="welcome-card">
-                        <h2>📚 Mes Cours de Français</h2>
-                        <div class="folder" onclick="toggleFolder('folder-eval')">📝 Évaluations & Contrôles</div>
-                        <div id="folder-eval" class="document-list" style="display:none; padding:10px;">
-                            <a href="#" class="link-card">📥 Télécharger : Contrôle Continu N°2</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="section-planning" class="content-section" style="display:none;">
-                    <div class="planning-container">
-                        <table class="timetable">
-                            <thead>
-                                <tr><th>Heure</th><th>Mar</th><th>Jeu</th><th>Ven</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>08h30</td><td class="c-6APG4">6APG4</td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td></tr>
-                            </tbody>
-                        </table>
+                    <div class="task-card border-green">
+                        <span class="tag green">LANGUE</span>
+                        <span class="date">📅 Mercredi 31 Décembre</span>
+                        <p>Exercices 1 et 2 p.47.</p>
                     </div>
                 </div>
             </section>
