@@ -489,3 +489,36 @@ header { margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; padding-bottom: 
     border-color: #3498db;
     transform: translateX(5px);
 }
+:root {
+    --primary-blue: #3498db;
+    --dark-sidebar: #2c3e50;
+    --bg-light: #f4f7f6;
+}
+
+body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg-light); }
+
+.app-container { display: flex; min-height: 100vh; }
+
+/* Sidebar Style image_ecef84.png */
+.sidebar { width: 250px; background: var(--dark-sidebar); color: white; padding: 20px; }
+.sidebar .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-blue); margin-bottom: 30px; }
+.sidebar ul { list-style: none; padding: 0; }
+.sidebar li { padding: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; transition: 0.3s; }
+.sidebar li.active { background: var(--primary-blue); }
+.sidebar li:hover { background: rgba(52, 152, 219, 0.2); }
+
+/* Main Content */
+.main-content { flex: 1; padding: 40px; }
+.welcome-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-blue); }
+
+/* Task Cards image_ecefaa.png */
+.task-card { background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eee; position: relative; }
+.border-blue { border-left: 5px solid #3498db; }
+.border-green { border-left: 5px solid #2ecc71; }
+.tag { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: white; margin-right: 10px; }
+.tag.blue { background: #3498db; }
+.tag.green { background: #2ecc71; }
+
+/* Boutons */
+.btn-primary { background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+.btn-download { background: #e67e22; color: white; padding: 15px; border: none; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; }
