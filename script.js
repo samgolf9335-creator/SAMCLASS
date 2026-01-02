@@ -1,81 +1,128 @@
-let isAuthenticated = false; 
+/* ==========================================================================
+   1. GESTION DES SECTIONS (NAVIGATION)
+   ========================================================================== */
+function showSection(sectionId) {
+    // 1. Cacher toutes les sections
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
 
-// --- 1. CONNEXION ---
+    // 2. Afficher la section demandée
+    const activeSection = document.getElementById('section-' + sectionId);
+    if (activeSection) {
+        activeSection.style.display = 'block';
+    }
+
+    // 3. Mettre à jour le titre du header
+    const titleMap = {
+        'accueil': 'Tableau de Bord',
+        'devoirs': 'Cahier de Textes',
+        'cours': 'Mes Cours de Français',
+        'notes': 'Mes Résultats - 2025/2026',
+        'planning': 'Emploi du Temps'
+    };
+    document.getElementById('section-title').innerText = titleMap[sectionId] || 'SAMCLASS';
+
+    // 4. Mettre à jour le style de la sidebar
+    const menuItems = document.querySelectorAll('.sidebar li');
+    menuItems.forEach(item => item.classList.remove('active'));
+    
+    // Ajoute la classe active au menu correspondant
+    const activeMenu = document.getElementById('menu-' + sectionId);
+    if (activeMenu) activeMenu.classList.add('active');
+}
+
+/* ==========================================================================
+   2. SYSTÈME DE MOT DE PASSE
+   ========================================================================== */
 function checkPassword() {
-    const mdp = document.getElementById('class-password').value;
-    const correctMdp = "SAM2024"; 
+    const passwordInput = document.getElementById('class-password').value;
+    const errorMsg = document.getElementById('login-error');
+    const loginForm = document.getElementById('login-form');
+    const welcomeMsg = document.getElementById('welcome-message');
 
-    if (mdp === correctMdp) {
-        isAuthenticated = true;
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('welcome-message').style.display = 'block';
-        document.getElementById('section-accueil').style.display = 'block';
-        alert("Connexion réussie ! Vous pouvez maintenant naviguer dans le menu.");
+    // Remplacez '1234' par le code de votre choix
+    if (passwordInput === 'SAM2026') {
+        loginForm.style.display = 'none';
+        welcomeMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+        // Optionnel : Sauvegarder la connexion pour la session
+        sessionStorage.setItem('isLoggedIn', 'true');
     } else {
-        alert("Mot de passe incorrect.");
+        errorMsg.style.display = 'block';
     }
 }
 
-// --- 2. NAVIGATION ---
-function showSection(sectionId) {
-    if (!isAuthenticated && sectionId !== 'accueil') {
-        alert("Veuillez d'abord entrer le mot de passe sur l'accueil.");
+/* ==========================================================================
+   3. GESTION DU CAHIER DE TEXTES (DEVOIRS)
+   ========================================================================== */
+function addTask() {
+    const taskText = document.getElementById('task-input').value;
+    const subject = document.getElementById('subject-select').value;
+    const date = document.getElementById('date-input').value;
+    const taskList = document.getElementById('task-list');
+
+    if (taskText === '' || date === '') {
+        alert("Veuillez remplir tous les champs !");
         return;
     }
 
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(s => { s.style.display = 'none'; });
-
-    const target = document.getElementById('section-' + sectionId);
-    if (target) { target.style.display = 'block'; }
-
-    document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.add('active');
-    }
-}
-
-// --- 3. DOSSIERS DE COURS ---
-function toggleFolder(folderId) {
-    const target = document.getElementById(folderId);
-    if (target) {
-        const isHidden = (target.style.display === 'none' || target.style.display === '');
-        target.style.display = isHidden ? 'block' : 'none';
-    }
-}
-
-// --- 4. AJOUT DES DEVOIRS (La fonction manquante) ---
-function addTask() {
-    const input = document.getElementById('task-input');
-    const subject = document.getElementById('subject-select');
-    const dateInput = document.getElementById('date-input');
-    const list = document.getElementById('task-list');
-
-    if (input.value.trim() === "") return;
-
-    // 1. Création de la carte de devoir pour l'onglet "Cahier de Textes"
-    const item = document.createElement('div');
-    item.style = "background:white; padding:15px; margin-top:10px; border-radius:8px; border-left:5px solid #3498db; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); color:#333;";
+    // Création de la carte de devoir
+    const taskCard = document.createElement('div');
+    taskCard.className = 'task-card';
     
-    item.innerHTML = `
-        <div>
-            <strong style="color:#3498db;">[${subject.value.toUpperCase()}]</strong> ${input.value}
-            <br><small style="color:#777;">📅 Pour le : ${dateInput.value || 'Non précisé'}</small>
-        </div>
-        <button onclick="this.parentElement.remove()" style="background:#ff7675; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; font-weight:bold;">❌</button>
+    // Formatage de la date en français
+    const dateObj = new Date(date);
+    const dateFr = dateObj.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    taskCard.innerHTML = `
+        <span class="subject-tag tag-${subject}">${subject.toUpperCase()}</span>
+        <p class="task-date">📅 Pour le : ${dateFr}</p>
+        <p class="task-text">${taskText}</p>
+        <button onclick="this.parentElement.remove()" style="margin-top:10px; color:red; cursor:pointer; background:none; border:none; font-size:0.8rem;">❌ Supprimer</button>
     `;
-    
-    list.appendChild(item);
 
-    // 2. MISE À JOUR AUTOMATIQUE DE L'ACCUEIL (Votre demande)
-    const latestNews = document.getElementById('latest-news');
-    if (latestNews) {
-        latestNews.innerHTML = `
-            <p style="margin:0;"><strong>📝 Dernier devoir ajouté :</strong></p>
-            <p style="margin:5px 0 0 0; color:#2980b9;">${subject.value.toUpperCase()} : ${input.value} (prévu pour le ${dateInput.value || 'bientôt'})</p>
-        `;
-    }
+    taskList.prepend(taskCard); // Ajoute le devoir en haut de la liste
 
-    // 3. Réinitialisation du champ de saisie
-    input.value = ""; 
+    // Réinitialisation des champs
+    document.getElementById('task-input').value = '';
 }
+
+/* ==========================================================================
+   4. GESTION DES DOSSIERS DE COURS
+   ========================================================================== */
+function toggleFolder(folderId) {
+    const folder = document.getElementById(folderId);
+    const allFolders = document.querySelectorAll('.document-list');
+
+    // Fermer les autres dossiers si on en ouvre un
+    allFolders.forEach(f => {
+        if (f.id !== folderId) f.style.display = 'none';
+    });
+
+    // Basculer l'affichage (Ouvert/Fermé)
+    if (folder.style.display === 'none' || folder.style.display === '') {
+        folder.style.display = 'block';
+    } else {
+        folder.style.display = 'none';
+    }
+}
+
+/* ==========================================================================
+   5. BOUTON RETOUR EN HAUT
+   ========================================================================== */
+const backToTopBtn = document.getElementById('back-to-top');
+const mainContent = document.querySelector('.main-content');
+
+mainContent.onscroll = function() {
+    if (mainContent.scrollTop > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+};
+
+backToTopBtn.onclick = function() {
+    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+};
