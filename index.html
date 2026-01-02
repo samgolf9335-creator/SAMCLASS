@@ -28,19 +28,19 @@
                 <div id="section-accueil" class="content-section">
                     <div class="welcome-card" id="login-form">
                         <div class="card-header">
-                            <span class="lock-icon">🔒</span>
+                            <span class="icon">🔓</span>
                             <h2>Espace Sécurisé</h2>
                         </div>
                         <p>Entrez le code de la classe pour accéder à vos documents.</p>
-                        <div class="login-row">
+                        <div class="login-box">
                             <input type="password" id="class-password" placeholder="Mot de passe...">
-                            <button onclick="checkPassword()" class="btn-primary">Connexion</button>
+                            <button onclick="checkPassword()" class="btn-blue">Connexion</button>
                         </div>
-                        <p id="login-error" class="error-msg">❌ Code incorrect.</p>
+                        <p id="login-error" class="error">❌ Code incorrect.</p>
                     </div>
 
                     <div id="welcome-message" style="display: none;">
-                        <div class="welcome-card">
+                        <div class="welcome-card blue-border">
                             <h2>Bonjour chers élèves ! 👋</h2>
                             <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
                         </div>
@@ -48,28 +48,54 @@
                 </div>
 
                 <div id="section-notes" class="content-section" style="display:none;">
-                    <div class="welcome-card">
+                    <div class="welcome-card blue-border">
                         <h2>📊 Mes Résultats - Premier Semestre</h2>
-                        <p>Voici votre bulletin détaillé par compétence.</p>
-                        <div class="bulletin-box">
-                            <button class="btn-download" onclick="window.open('VOTRE_LIEN_DRIVE', '_blank')">
-                                📂 Consulter mes bulletins (PDF)
+                        <p>Consultez votre bulletin détaillé (PO, CO, LC, LF, PE, OL).</p>
+                        <div class="bulletin-action">
+                            <button class="btn-orange" onclick="window.open('VOTRE_LIEN_DRIVE_BULLETINS', '_blank')">
+                                📂 Ouvrir mon dossier de bulletins (PDF)
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
-                    <h2>📝 Travail à faire</h2>
-                    <div class="task-card border-blue">
-                        <span class="tag blue">TEXTE</span>
-                        <span class="date">📅 Mardi 30 Décembre</span>
-                        <p>Lire "La meilleure matière" p.46.</p>
+                    <div class="welcome-card no-border">
+                        <h2>📝 Travail à faire</h2>
+                        <div class="task-item blue-side">
+                            <span class="badge badge-blue">TEXTE</span>
+                            <span class="task-date">📅 Mardi 30 Décembre</span>
+                            <span class="task-desc">Lire "La meilleure matière" p.46.</span>
+                        </div>
+                        <div class="task-item green-side">
+                            <span class="badge badge-green">LANGUE</span>
+                            <span class="task-date">📅 Mercredi 31 Décembre</span>
+                            <span class="task-desc">Exercices 1 et 2 p.47.</span>
+                        </div>
                     </div>
-                    <div class="task-card border-green">
-                        <span class="tag green">LANGUE</span>
-                        <span class="date">📅 Mercredi 31 Décembre</span>
-                        <p>Exercices 1 et 2 p.47.</p>
+                </div>
+
+                <div id="section-planning" class="content-section" style="display:none;">
+                    <div class="welcome-card blue-border">
+                        <h2>📅 Emploi du Temps</h2>
+                        <table class="timetable">
+                            <thead>
+                                <tr>
+                                    <th>Heure</th>
+                                    <th>Mar</th>
+                                    <th>Jeu</th>
+                                    <th>Ven</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="time-col">08h30</td>
+                                    <td class="bg-purple">6APG4</td>
+                                    <td class="bg-purple">6APG4</td>
+                                    <td class="bg-red">6APG1</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
