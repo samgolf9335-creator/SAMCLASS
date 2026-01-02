@@ -1,134 +1,114 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMCLASS - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMCLASS - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="mode-eleve">
-    <div class="app-container">
-        <nav class="sidebar">
-            <div class="logo">SAMCLASS</div>
-            <ul>
-                <li class="active" onclick="showSection('accueil')">🏠 Accueil</li>
-                <li onclick="showSection('devoirs')">📝 Cahier de Textes</li>
-                <li onclick="showSection('cours')">📚 Mes Cours</li>
-                <li onclick="showSection('planning')">📅 Emploi du Temps</li>
-            </ul>
-        </nav>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">SAMCLASS</div>
+            <ul>
+                <li class="active" onclick="showSection('accueil')">🏠 Accueil</li>
+                <li onclick="showSection('devoirs')">📝 Cahier de Textes</li>
+                <li onclick="showSection('cours')">📚 Mes Cours</li>
+                <li onclick="showSection('planning')">📅 Emploi du Temps</li>
+            </ul>
+        </nav>
 
-        <main class="main-content">
-            <header>
-                <h1 id="section-title">Tableau de Bord</h1>
-            </header>
+        <main class="main-content">
+            <header>
+                <h1 id="section-title">Tableau de Bord</h1>
+            </header>
 
-            <section id="content-area">
-                <div id="section-accueil" class="content-section">
-                    <div class="welcome-card" id="login-form">
-                        <h2>🔒 Espace Sécurisé</h2>
-                        <p>Veuillez entrer le code de la classe pour accéder aux cours et aux devoirs.</p>
-                        <div style="margin-top: 20px;">
-                            <input type="password" id="class-password" placeholder="Mot de passe..." style="padding: 10px; border-radius: 5px; border: 1px solid #ddd; width: 200px;">
-                            <button onclick="checkPassword()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Connexion</button>
-                        </div>
-                        <p id="login-error" style="color: red; display: none; margin-top: 10px;">❌ Code incorrect, réessayez.</p>
-                    </div>
+            <section id="content-area">
+                <div id="section-accueil" class="content-section">
+                    <div class="welcome-card" id="login-form">
+                        <h2>🔒 Espace Sécurisé</h2>
+                        <p>Veuillez entrer le code de la classe pour accéder aux cours et aux devoirs.</p>
+                        <div style="margin-top: 20px;">
+                            <input type="password" id="class-password" placeholder="Mot de passe..." style="padding: 10px; border-radius: 5px; border: 1px solid #ddd; width: 200px;">
+                            <button onclick="checkPassword()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Connexion</button>
+                        </div>
+                        <p id="login-error" style="color: red; display: none; margin-top: 10px;">❌ Code incorrect, réessayez.</p>
+                    </div>
 
-                   <div class="welcome-card" id="welcome-message" style="display: none;">
-    <h2>Bonjour chers élèves ! 👋</h2>
-    <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
-    <div id="latest-news" style="margin-top:20px; padding:15px; background:#f0f9ff; border-radius:8px; border-left:5px solid #3498db;">
-        <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
-    </div>
+                   <div class="welcome-card" id="welcome-message" style="display: none;">
+    <h2>Bonjour chers élèves ! 👋</h2>
+    <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
+    <div id="latest-news" style="margin-top:20px; padding:15px; background:#f0f9ff; border-radius:8px; border-left:5px solid #3498db;">
+        <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
+    </div>
 </div>
 </div>
-                <div id="section-devoirs" class="content-section" style="display:none;">
-    <div class="welcome-card">
-        <h2>📝 Travail à faire</h2>
-        <div id="task-list-fixe">
-            
-            <div class="task-card">
-                <div class="task-info">
-                    <span class="subject-tag tag-texte">Texte</span>
-                    <span class="task-date">📅 Pour le Mardi 30 Décembre</span>
-                    <p class="task-text">Lire le texte "la meilleure matière. page 46" et répondre aux questions de compréhension.</p>
-                </div>
-            </div>
+                <div id="section-devoirs" class="content-section" style="display:none;">
+                    <div class="input-section">
+                        <input type="text" id="task-input" placeholder="Nouveau devoir...">
+                        <select id="subject-select">
+                            <option value="langue">Langue</option>
+                            <option value="lecture">Lecture</option>
+                            <option value="production">Production écrite</option>
+                        </select>
+                        <input type="date" id="date-input">
+                        <button onclick="addTask()">Ajouter</button>
+                    </div>
+                    <div id="task-list" style="margin-top: 20px;"></div>
+                </div>
 
-            <div class="task-card">
-                <div class="task-info">
-                    <span class="subject-tag tag-langue">Langue</span>
-                    <span class="task-date">📅 Pour le Mercredi 31 Décembre</span>
-                    <p class="task-text">Le superlatif et Donner son opinion.Faire les exercices 1 et 2 page 47 du manuel.</p>
-                </div>
-            </div>
+                <div id="section-cours" class="content-section" style="display:none;">
+                    <div class="welcome-card">
+                        <h2>📚 Mes Cours de Français</h2>
+                        <div class="folder-container">
+                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
+                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
+                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
+                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
+                        </div>
 
-            <div class="task-card">
-                <div class="task-info">
-                    <span class="subject-tag tag-production">Production</span>
-                    <span class="task-date">📅 Pour le vendredi 02 Janvier</span>
-                    <p class="task-text">Écrire un paragraphe pour parler de la meilleure matière à l'école. page 47.</p>
-                </div>
-            </div>
+                        <div id="folder-lecture" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">📄 Texte : La ville de demain</a>
+                        </div>
+                        <div id="folder-langue" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
+                        </div>
+                        <div id="folder-production" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">📝 Décrire son quartier</a>
+                        </div>
+                        <div id="folder-eval" class="document-list" style="display:none;">
+                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
+                        </div>
 
-        </div>
-    </div>
-</div>
+                        <div class="useful-links-section" style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+                            <h3>🔗 Outils</h3>
+                            <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card" style="display:inline-block; text-decoration:none; color:#333;">📖 <span>Dictionnaire Le Robert</span></a>
+                        </div>
+                    </div>
+                </div>
 
-                <div id="section-cours" class="content-section" style="display:none;">
-                    <div class="welcome-card">
-                        <h2>📚 Mes Cours de Français</h2>
-                        <div class="folder-container">
-                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
-                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
-                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
-                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
-                        </div>
-
-                        <div id="folder-lecture" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">📄 Texte : La ville de demain</a>
-                        </div>
-                        <div id="folder-langue" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
-                        </div>
-                        <div id="folder-production" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">📝 Décrire son quartier</a>
-                        </div>
-                        <div id="folder-eval" class="document-list" style="display:none;">
-                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
-                            <a href="https://drive.google.com/uc?export=download&id=1tui78VAyIB8w_mMQHZ_hDSOcLYGsOTM_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°2</a>
-                        </div>
-
-                        <div class="useful-links-section" style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
-                            <h3>🔗 Outils</h3>
-                            <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card" style="display:inline-block; text-decoration:none; color:#333;">📖 <span>Dictionnaire Le Robert</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="section-planning" class="content-section" style="display:none;">
-                    <div class="planning-container">
-                        <table class="timetable">
-                            <thead>
-                                <tr><th>Heure</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samdi</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="time">08h30-09h35</td><td></td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td><td></td></tr>
-                                <tr><td class="time">09h40-10h45</td><td></td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td class="c-6APG2">6APG2</td><td></td></tr>
-                                <tr><td class="time">10h55-12h00</td><td></td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td class="c-6APG3">6APG3</td><td></td></tr>
-                                <tr><td class="time">12h05-13h10</td><td></td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td class="c-6APG4">6APG4</td><td></td></tr>
-                                <tr><td class="time">13h30-14h35</td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td></td><td></td><td class="c-6APG4">6APG4</td></tr>
-                                <tr><td class="time">14h40-15h45</td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td></td><td></td><td class="c-6APG3">6APG3</td></tr>
-                                <tr><td class="time">15h55-17h00</td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td></td><td></td><td class="c-6APG2">6APG2</td></tr>
-                                <tr><td class="time">17h05-18h10</td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td></td><td></td><td class="c-6APG1">6APG1</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-    <script src="script.js"></script>
+                <div id="section-planning" class="content-section" style="display:none;">
+                    <div class="planning-container">
+                        <table class="timetable">
+                            <thead>
+                                <tr><th>Heure</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="time">08h30-09h35</td><td></td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td><td></td></tr>
+                                <tr><td class="time">09h40-10h45</td><td></td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td class="c-6APG2">6APG2</td><td></td></tr>
+                                <tr><td class="time">10h55-12h00</td><td></td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td class="c-6APG3">6APG3</td><td></td></tr>
+                                <tr><td class="time">12h05-13h10</td><td></td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td class="c-6APG4">6APG4</td><td></td></tr>
+                                <tr><td class="time">13h30-14h35</td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td></td><td></td><td class="c-6APG4">6APG4</td></tr>
+                                <tr><td class="time">14h40-15h45</td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td></td><td></td><td class="c-6APG3">6APG3</td></tr>
+                                <tr><td class="time">15h55-17h00</td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td></td><td></td><td class="c-6APG2">6APG2</td></tr>
+                                <tr><td class="time">17h05-18h10</td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td></td><td></td><td class="c-6APG1">6APG1</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
