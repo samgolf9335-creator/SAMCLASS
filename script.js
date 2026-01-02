@@ -41,19 +41,25 @@ function showSection(sectionId) {
     }
 }
 
-// --- SYSTÈME DE MOT DE PASSE ---
 function checkPassword() {
+    // Récupération des éléments
     const passwordInput = document.getElementById('class-password');
     const errorMsg = document.getElementById('login-error');
-    const welcomeCard = document.getElementById('welcome-message');
     const loginForm = document.getElementById('login-form');
+    const welcomeMsg = document.getElementById('welcome-message');
 
-    if (passwordInput && passwordInput.value === 'SAM2026') { // Remplacez SAM2026 par votre code
-        if (loginForm) loginForm.style.display = 'none';
-        if (welcomeCard) welcomeCard.style.display = 'block';
-        if (errorMsg) errorMsg.style.display = 'none';
+    // Vérification (Exemple avec le code 'SAM2026')
+    if (passwordInput.value === 'SAM2026') {
+        // SUCCÈS : On cache le formulaire et on montre le message de bienvenue
+        loginForm.style.display = 'none'; 
+        welcomeMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+        
+        // Optionnel : Enregistrer l'accès pour cette session
+        sessionStorage.setItem('accessGranted', 'true');
     } else {
-        if (errorMsg) errorMsg.style.display = 'block';
+        // ÉCHEC : On montre l'erreur
+        errorMsg.style.display = 'block';
     }
 }
 
