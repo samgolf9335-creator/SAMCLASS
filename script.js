@@ -1,49 +1,70 @@
-window.onload = function() {
-    // Initialisation du bouton retour en haut
+// On enveloppe tout dans un écouteur d'événement pour attendre le chargement complet du HTML
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. GESTION DU BOUTON RETOUR EN HAUT
     const backToTopBtn = document.getElementById('back-to-top');
     const mainContent = document.querySelector('.main-content');
 
     if (backToTopBtn && mainContent) {
-        mainContent.onscroll = function() {
+        mainContent.addEventListener('scroll', function() {
             if (mainContent.scrollTop > 300) {
                 backToTopBtn.style.display = "block";
             } else {
                 backToTopBtn.style.display = "none";
             }
-        };
+        });
 
-        backToTopBtn.onclick = function() {
+        backToTopBtn.addEventListener('click', function() {
             mainContent.scrollTo({ top: 0, behavior: 'smooth' });
-        };
+        });
     }
-};
 
-// --- FONCTIONS DE NAVIGATION ---
+    // 2. INITIALISATION DE L'AFFICHAGE (Montrer l'accueil par défaut)
+    showSection('accueil');
+});
+
+// --- FONCTION DE NAVIGATION ---
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(s => s.style.display = 'none');
 
-    const target = document.getElementById('section-' + sectionId);
-    if (target) target.style.display = 'block';
+    const targetSection = document.getElementById('section-' + sectionId);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
 
-    // Mise à jour visuelle du menu
+    // Mise à jour visuelle du menu latéral
     document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
-    const activeLi = document.getElementById('menu-' + sectionId);
-    if (activeLi) activeLi.classList.add('active');
+    const activeMenu = document.getElementById('menu-' + sectionId);
+    if (activeMenu) {
+        activeMenu.classList.add('active');
+    }
 }
 
-// --- FONCTION MOT DE PASSE ---
+// --- SYSTÈME DE MOT DE PASSE ---
 function checkPassword() {
-    const pass = document.getElementById('class-password').value;
-    const error = document.getElementById('login-error');
-    const welcome = document.getElementById('welcome-message');
-    const form = document.getElementById('login-form');
+    const passwordInput = document.getElementById('class-password');
+    const errorMsg = document.getElementById('login-error');
+    const welcomeCard = document.getElementById('welcome-message');
+    const loginForm = document.getElementById('login-form');
 
-    if (pass === 'votre_code_ici') { // Changez le code ici
-        form.style.display = 'none';
-        welcome.style.display = 'block';
-        error.style.display = 'none';
+    if (passwordInput && passwordInput.value === 'SAM2026') { // Remplacez SAM2026 par votre code
+        if (loginForm) loginForm.style.display = 'none';
+        if (welcomeCard) welcomeCard.style.display = 'block';
+        if (errorMsg) errorMsg.style.display = 'none';
     } else {
-        error.style.display = 'block';
+        if (errorMsg) errorMsg.style.display = 'block';
+    }
+}
+
+// --- GESTION DES DOSSIERS DE COURS ---
+function toggleFolder(folderId) {
+    const folder = document.getElementById(folderId);
+    if (folder) {
+        const isHidden = (folder.style.display === 'none' || folder.style.display === '');
+        // Ferme tous les autres dossiers d'abord
+        document.querySelectorAll('.document-list').forEach(d => d.style.display = 'none');
+        // Ouvre ou ferme le dossier cliqué
+        folder.style.display = isHidden ? 'block' : 'none';
     }
 }
