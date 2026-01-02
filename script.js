@@ -110,19 +110,29 @@ function toggleFolder(folderId) {
 }
 
 /* ==========================================================================
-   5. BOUTON RETOUR EN HAUT
+   5. BOUTON RETOUR EN HAUT (CORRIGÉ)
    ========================================================================== */
-const backToTopBtn = document.getElementById('back-to-top');
-const mainContent = document.querySelector('.main-content');
+// On attend que le document soit totalement chargé
+window.addEventListener('DOMContentLoaded', () => {
+    const backToTopBtn = document.getElementById('back-to-top');
+    const mainContent = document.querySelector('.main-content');
 
-mainContent.onscroll = function() {
-    if (mainContent.scrollTop > 300) {
-        backToTopBtn.style.display = "block";
+    // On vérifie que les deux éléments existent bien
+    if (backToTopBtn && mainContent) {
+        
+        mainContent.onscroll = function() {
+            if (mainContent.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+
+        backToTopBtn.onclick = function() {
+            mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        
     } else {
-        backToTopBtn.style.display = "none";
+        console.warn("Le bouton 'back-to-top' ou '.main-content' n'a pas été trouvé dans le HTML.");
     }
-};
-
-backToTopBtn.onclick = function() {
-    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
-};
+});
