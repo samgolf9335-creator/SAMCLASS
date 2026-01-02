@@ -11,11 +11,11 @@
         <nav class="sidebar">
             <div class="logo">SAMCLASS</div>
             <ul>
-                <li class="active" onclick="showSection('accueil')">🏠 Accueil</li>
-                <li onclick="showSection('devoirs')">📝 Cahier de Textes</li>
-                <li onclick="showSection('cours')">📚 Mes Cours</li>
-                <li onclick="showSection('notes')">📊 Mes Résultats - 2025/2026</li>
-                <li onclick="showSection('planning')">📅 Emploi du Temps</li>
+                <li id="menu-accueil" class="active" onclick="showSection('accueil')">🏠 Accueil</li>
+                <li id="menu-devoirs" onclick="showSection('devoirs')">📝 Cahier de Textes</li>
+                <li id="menu-cours" onclick="showSection('cours')">📚 Mes Cours</li>
+                <li id="menu-notes" onclick="showSection('notes')">📊 Mes Résultats</li>
+                <li id="menu-planning" onclick="showSection('planning')">📅 Emploi du Temps</li>
             </ul>
         </nav>
 
@@ -25,25 +25,27 @@
             </header>
 
             <section id="content-area">
+                
                 <div id="section-accueil" class="content-section">
                     <div class="welcome-card" id="login-form">
                         <h2>🔒 Espace Sécurisé</h2>
-                        <p>Veuillez entrer le code de la classe pour accéder aux cours et aux devoirs.</p>
-                        <div style="margin-top: 20px;">
-                            <input type="password" id="class-password" placeholder="Mot de passe..." style="padding: 10px; border-radius: 5px; border: 1px solid #ddd; width: 200px;">
-                            <button onclick="checkPassword()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Connexion</button>
+                        <p>Veuillez entrer le code de la classe pour accéder au contenu.</p>
+                        <div class="login-controls">
+                            <input type="password" id="class-password" placeholder="Mot de passe...">
+                            <button onclick="checkPassword()" class="btn-primary">Connexion</button>
                         </div>
-                        <p id="login-error" style="color: red; display: none; margin-top: 10px;">❌ Code incorrect, réessayez.</p>
+                        <p id="login-error" class="error-msg">❌ Code incorrect, réessayez.</p>
                     </div>
 
-                   <div class="welcome-card" id="welcome-message" style="display: none;">
-    <h2>Bonjour chers élèves ! 👋</h2>
-    <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
-    <div id="latest-news" style="margin-top:20px; padding:15px; background:#f0f9ff; border-radius:8px; border-left:5px solid #3498db;">
-        <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
-    </div>
-</div>
-</div>
+                    <div class="welcome-card" id="welcome-message" style="display: none;">
+                        <h2>Bonjour chers élèves ! 👋</h2>
+                        <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
+                        <div class="news-banner">
+                            <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="section-devoirs" class="content-section" style="display:none;">
                     <div class="input-section">
                         <input type="text" id="task-input" placeholder="Nouveau devoir...">
@@ -53,19 +55,31 @@
                             <option value="production">Production écrite</option>
                         </select>
                         <input type="date" id="date-input">
-                        <button onclick="addTask()">Ajouter</button>
+                        <button onclick="addTask()" class="btn-primary">Ajouter</button>
                     </div>
-                    <div id="task-list" style="margin-top: 20px;"></div>
+                    <div id="task-list"></div>
                 </div>
 
                 <div id="section-cours" class="content-section" style="display:none;">
                     <div class="welcome-card">
                         <h2>📚 Mes Cours de Français</h2>
                         <div class="folder-container">
-                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
-                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
-                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
-                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
+                            <div class="folder" onclick="toggleFolder('folder-lecture')">
+                                <span class="folder-icon">📂</span>
+                                <span class="folder-name">Texte de lecture</span>
+                            </div>
+                            <div class="folder" onclick="toggleFolder('folder-langue')">
+                                <span class="folder-icon">📂</span>
+                                <span class="folder-name">Langue</span>
+                            </div>
+                            <div class="folder" onclick="toggleFolder('folder-production')">
+                                <span class="folder-icon">📂</span>
+                                <span class="folder-name">Production écrite</span>
+                            </div>
+                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">
+                                <span class="folder-icon">📝</span>
+                                <span class="folder-name">Évaluations</span>
+                            </div>
                         </div>
 
                         <div id="folder-lecture" class="document-list" style="display:none;">
@@ -78,27 +92,32 @@
                             <a href="#" class="link-card">📝 Décrire son quartier</a>
                         </div>
                         <div id="folder-eval" class="document-list" style="display:none;">
-                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
+                            <a href="https://votre-lien-drive" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
                         </div>
 
-                        <div class="useful-links-section" style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
-                            <h3>🔗 Outils</h3>
-                            <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card" style="display:inline-block; text-decoration:none; color:#333;">📖 <span>Dictionnaire Le Robert</span></a>
+                        <div class="useful-links-section">
+                            <h3>🔗 Outils utiles</h3>
+                            <div class="links-grid">
+                                <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card">
+                                    <span class="link-icon">📖</span> Le Robert
+                                </a>
+                            </div>
                         </div>
-                        <div id="section-notes" class="content-section" style="display:none;">
-                        <div class="welcome-card" style="border-left: 5px solid #e67e22;">
-                                <h2>📊 Mes Résultats - 2025/2026</h2>
-                       <p>Cliquez sur le bouton ci-dessous pour accéder à votre bulletin de notes (PO, CO, LC, etc.).</p>
-                       <div style="margin-top: 25px; text-align: center;">
-                        <button onclick="window.open('VOTRE_LIEN_GOOGLE_DRIVE_PARTAGE', '_blank')" 
-                    style="background: #e67e22; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; max-width: 400px;">
-                         📂 Consulter mes bulletins (Format PDF)
-                        </button>
-                    <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">
-                       Les bulletins sont mis à jour après chaque évaluation.</p>
+                    </div>
+                </div>
+
+                <div id="section-notes" class="content-section" style="display:none;">
+                    <div class="welcome-card notes-card">
+                        <h2>📊 Mes Résultats - 2025/2026</h2>
+                        <p>Consultez vos bulletins de notes (PO, CO, LC, etc.) mis à jour régulièrement.</p>
+                        <div class="action-area">
+                            <button onclick="window.open('VOTRE_LIEN_GOOGLE_DRIVE', '_blank')" class="btn-notes">
+                                📂 Consulter mes bulletins (PDF)
+                            </button>
                         </div>
-                      </div>
-                   </div>
+                        <p class="small-info">Les bulletins sont mis à jour après chaque évaluation.</p>
+                    </div>
+                </div>
 
                 <div id="section-planning" class="content-section" style="display:none;">
                     <div class="planning-container">
@@ -119,9 +138,13 @@
                         </table>
                     </div>
                 </div>
+
             </section>
         </main>
     </div>
+    
+    <button id="back-to-top" title="Retour en haut">↑</button>
+
     <script src="script.js"></script>
 </body>
 </html>
