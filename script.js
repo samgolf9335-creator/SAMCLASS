@@ -62,7 +62,18 @@ function checkPassword() {
         errorMsg.style.display = 'block';
     }
 }
-
+// --- 1. SÉCURITÉ ---
+function checkPassword() {
+    const mdp = document.getElementById('class-password').value;
+    if (mdp === "SAM2026") {
+        isAuthenticated = true;
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('welcome-message').style.display = 'block';
+        document.getElementById('section-accueil').style.display = 'block';
+    } else {
+        alert("Mot de passe incorrect.");
+    }
+}
 // --- GESTION DES DOSSIERS DE COURS ---
 function toggleFolder(folderId) {
     const folder = document.getElementById(folderId);
