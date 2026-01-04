@@ -104,3 +104,6 @@ function rechercherBulletin() {
     // Nettoyage du champ
     input.value = "";
 }
+// Dans script.js
+const idDossier = "150ShkQJgqueDV2-p6DBREokv6n3-4fdi";
+const urlRecherche = `https://drive.google.com/drive/u/0/search?q=parent:${idDossier}%20title:${code}`;
