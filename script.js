@@ -1,7 +1,11 @@
-// On enveloppe tout dans un écouteur d'événement pour attendre le chargement complet du HTML
+// 1. VARIABLES GLOBALES
+let isAuthenticated = false; // Bloqué par défaut
+
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. GESTION DU BOUTON RETOUR EN HAUT
+    // Initialisation : Montrer l'accueil par défaut
+    showSection('accueil');
+
+    // Gestion du bouton retour en haut
     const backToTopBtn = document.getElementById('back-to-top');
     const mainContent = document.querySelector('.main-content');
 
@@ -13,93 +17,66 @@ document.addEventListener('DOMContentLoaded', function() {
                 backToTopBtn.style.display = "none";
             }
         });
-
         backToTopBtn.addEventListener('click', function() {
             mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
-    // 2. INITIALISATION DE L'AFFICHAGE (Montrer l'accueil par défaut)
-    showSection('accueil');
 });
 
-// --- FONCTION DE NAVIGATION ---
-function showSection(sectionId) {
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(s => s.style.display = 'none');
-
-    const targetSection = document.getElementById('section-' + sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'block';
-    }
-
-    // Mise à jour visuelle du menu latéral
-    document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
-    const activeMenu = document.getElementById('menu-' + sectionId);
-    if (activeMenu) {
-        activeMenu.classList.add('active');
-    }
-}
-      
-        // Optionnel : Enregistrer l'accès pour cette session
-        sessionStorage.setItem('accessGranted', 'true');
-    } else {
-        // ÉCHEC : On montre l'erreur
-        errorMsg.style.display = 'block';
-    }
-}
-// Variable globale pour suivre la connexion
-let isAuthenticated = false;
-
+// 2. FONCTION DE CONNEXION (Unique et corrigée)
 function checkPassword() {
     const passwordInput = document.getElementById('class-password');
-    const welcomeMsg = document.getElementById('welcome-message');
-    const loginForm = document.getElementById('login-form');
     const errorMsg = document.getElementById('login-error');
+    const loginForm = document.getElementById('login-form');
+    const welcomeMsg = document.getElementById('welcome-message');
 
+    // Le mot de passe choisi
     if (passwordInput.value === 'SAM2026') {
-        isAuthenticated = true; // Débloque l'accès
+        isAuthenticated = true; // ON DÉBLOQUE L'ACCÈS
+        
         loginForm.style.display = 'none'; 
         welcomeMsg.style.display = 'block';
         errorMsg.style.display = 'none';
-        alert("Accès autorisé ! Bienvenue sur SAMCLASS.");
+        
+        alert("✅ Code correct ! Contenu débloqué.");
     } else {
         errorMsg.style.display = 'block';
-        isAuthenticated = false;
+        passwordInput.value = ""; // Efface le mauvais code
     }
 }
 
+// 3. NAVIGATION SÉCURISÉE
 function showSection(sectionId) {
-    // SÉCURITÉ : Si l'élève n'est pas connecté et veut voir autre chose que l'accueil
+    // Si l'élève n'est pas connecté et essaie d'aller ailleurs qu'à l'accueil
     if (!isAuthenticated && sectionId !== 'accueil') {
-        alert("🔒 Veuillez d'abord entrer le code secret sur la page d'accueil.");
-        return; // Arrête la fonction ici
+        alert("🔒 Accès refusé. Entrez le mot de passe sur la page d'accueil.");
+        return; 
     }
 
-    // Sinon, on affiche la section normalement
+    // Cacher toutes les sections
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(s => s.style.display = 'none');
 
+    // Afficher la section demandée
     const targetSection = document.getElementById('section-' + sectionId);
     if (targetSection) {
         targetSection.style.display = 'block';
     }
 
-    // Mise à jour visuelle du menu
+    // Mise à jour du menu
     document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
     const activeMenu = document.getElementById('menu-' + sectionId);
     if (activeMenu) {
         activeMenu.classList.add('active');
     }
 }
-// --- GESTION DES DOSSIERS DE COURS ---
+
+// 4. GESTION DES DOSSIERS
 function toggleFolder(folderId) {
     const folder = document.getElementById(folderId);
     if (folder) {
         const isHidden = (folder.style.display === 'none' || folder.style.display === '');
-        // Ferme tous les autres dossiers d'abord
         document.querySelectorAll('.document-list').forEach(d => d.style.display = 'none');
-        // Ouvre ou ferme le dossier cliqué
         folder.style.display = isHidden ? 'block' : 'none';
     }
 }
