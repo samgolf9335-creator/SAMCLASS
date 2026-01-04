@@ -81,39 +81,18 @@ function toggleFolder(folderId) {
     }
 }
 function rechercherBulletin() {
-    const code = document.getElementById('massar-input').value.trim();
-    const errorMsg = document.getElementById('error-message');
-    
-    if (code === "") {
-        alert("Veuillez entrer votre code Massar");
-        return;
-    }
-
-    // LIEN VERS VOTRE DOSSIER GOOGLE DRIVE
-    // Option A : Si vous voulez que l'élève cherche dans le dossier :
-    const dossierLien = "https://drive.google.com/drive/folders/VOTRE_ID_GOOGLE_DRIVE";
-    
-    // On ouvre le dossier Google Drive
-    window.open(dossierLien, '_blank');
-}
-function rechercherBulletin() {
-    // 1. On récupère ce que l'élève a tapé
     const code = document.getElementById('massar-input').value.trim().toUpperCase();
-    const errorMsg = document.getElementById('error-message');
     
     if (code === "") {
         alert("Veuillez entrer votre code Massar");
         return;
     }
 
-    // 2. LE LIEN DRIVE (À MODIFIER)
-    // Collez ici le lien de votre DOSSIER Google Drive contenant les 129 PDF
-    const lienDossierDrive = "https://drive.google.com/drive/folders/150ShkQJgqueDV2-p6DBREokv6n3-4fdi?usp=drive_link?usp=sharing";
-
-    // 3. Action : On ouvre le dossier
-    // L'élève n'aura qu'à taper son code dans la barre de recherche du Drive qui s'ouvre
-    window.open(lienDossierDrive, '_blank');
+    // Remplacez ID_DU_DOSSIER par l'identifiant de votre dossier Google Drive
+    const idDossier = "VOTRE_ID_DE_DOSSIER_ICI"; 
     
-    // Optionnel : masquer le message d'erreur s'il était affiché
-    errorMsg.style.display = 'none';
+    // Cette URL force Google Drive à rechercher le code Massar à l'intérieur de votre dossier
+    const urlRecherche = `https://drive.google.com/drive/u/0/folders/${idDossier}?q=${code}`;
+
+    window.open(urlRecherche, '_blank');
 }
