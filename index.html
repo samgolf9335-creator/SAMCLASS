@@ -29,21 +29,18 @@
                 
                 <div id="section-accueil" class="content-section">
                     <div class="welcome-card" id="login-form">
-    <h2>🔒 Espace Sécurisé</h2>
-    <input type="password" id="class-password" placeholder="Mot de passe...">
-    <button onclick="checkPassword()">Connexion</button>
-    <p id="login-error" style="display: none; color: red;">❌ Code incorrect.</p>
-</div>
+                        <h2>🔒 Espace Sécurisé</h2>
+                        <input type="password" id="class-password" placeholder="Mot de passe...">
+                        <button onclick="checkPassword()" class="btn-primary">Connexion</button>
+                        <p id="login-error" style="display: none; color: red; margin-top: 10px;">❌ Code incorrect.</p>
+                    </div>
 
-<div class="welcome-card" id="welcome-message" style="display: none;">
-    <h2>Bonjour chers élèves ! 👋</h2>
-    <p>Le contenu est maintenant débloqué.</p>
-    <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
-</div>
-                    
-                
-                </div>              
-            </div>
+                    <div class="welcome-card" id="welcome-message" style="display: none;">
+                        <h2>Bonjour chers élèves ! 👋</h2>
+                        <p>Le contenu est maintenant débloqué.</p>
+                        <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
+                    </div>
+                </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
                     <div class="input-section">
@@ -63,44 +60,23 @@
                     <div class="welcome-card">
                         <h2>📚 Mes Cours de Français</h2>
                         <div class="folder-container">
-                            <div class="folder" onclick="toggleFolder('folder-lecture')">
-                                <span class="folder-icon">📂</span>
-                                <span class="folder-name">Texte de lecture</span>
-                            </div>
-                            <div class="folder" onclick="toggleFolder('folder-langue')">
-                                <span class="folder-icon">📂</span>
-                                <span class="folder-name">Langue</span>
-                            </div>
-                            <div class="folder" onclick="toggleFolder('folder-production')">
-                                <span class="folder-icon">📂</span>
-                                <span class="folder-name">Production écrite</span>
-                            </div>
-                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">
-                                <span class="folder-icon">📝</span>
-                                <span class="folder-name">Évaluations</span>
-                            </div>
+                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
+                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
+                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
+                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
                         </div>
 
                         <div id="folder-lecture" class="document-list" style="display:none;">
                             <a href="#" class="link-card">📄 Texte : La ville de demain</a>
                         </div>
                         <div id="folder-langue" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
+                            <a href="#" class="link-card">✍️ Le futur simple</a>
                         </div>
                         <div id="folder-production" class="document-list" style="display:none;">
                             <a href="#" class="link-card">📝 Décrire son quartier</a>
                         </div>
                         <div id="folder-eval" class="document-list" style="display:none;">
-                            <a href="https://votre-lien-drive" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
-                        </div>
-
-                        <div class="useful-links-section">
-                            <h3>🔗 Outils utiles</h3>
-                            <div class="links-grid">
-                                <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card">
-                                    <span class="link-icon">📖</span> Le Robert
-                                </a>
-                            </div>
+                            <a href="#" class="link-card">📥 Télécharger : Contrôle N°1</a>
                         </div>
                     </div>
                 </div>
@@ -108,13 +84,8 @@
                 <div id="section-notes" class="content-section" style="display:none;">
                     <div class="welcome-card notes-card">
                         <h2>📊 Mes Résultats - 2025/2026</h2>
-                        <p>Consultez vos bulletins de notes (PO, CO, LC, etc.) mis à jour régulièrement.</p>
-                        <div class="action-area">
-                            <button onclick="window.open('VOTRE_LIEN_GOOGLE_DRIVE', '_blank')" class="btn-notes">
-                                📂 Consulter mes bulletins (PDF)
-                            </button>
-                        </div>
-                        <p class="small-info">Les bulletins sont mis à jour après chaque évaluation.</p>
+                        <p>Consultez vos bulletins de notes mis à jour.</p>
+                        <button onclick="window.open('VOTRE_LIEN_DRIVE', '_blank')" class="btn-notes">📂 Consulter mes bulletins (PDF)</button>
                     </div>
                 </div>
 
@@ -125,15 +96,8 @@
                                 <tr><th>Heure</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td class="time">08h30-09h35</td><td></td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td><td></td></tr>
-                                <tr><td class="time">09h40-10h45</td><td></td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td class="c-6APG2">6APG2</td><td></td></tr>
-                                <tr><td class="time">10h55-12h00</td><td></td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td class="c-6APG3">6APG3</td><td></td></tr>
-                                <tr><td class="time">12h05-13h10</td><td></td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td class="c-6APG4">6APG4</td><td></td></tr>
-                                <tr><td class="time">13h30-14h35</td><td class="c-6APG1">6APG1</td><td></td><td class="c-6APG1">6APG1</td><td></td><td></td><td class="c-6APG4">6APG4</td></tr>
-                                <tr><td class="time">14h40-15h45</td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td></td><td></td><td class="c-6APG3">6APG3</td></tr>
-                                <tr><td class="time">15h55-17h00</td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td></td><td></td><td class="c-6APG2">6APG2</td></tr>
-                                <tr><td class="time">17h05-18h10</td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td></td><td></td><td class="c-6APG1">6APG1</td></tr>
-                            </tbody>
+                                <tr><td class="time">08h30</td><td></td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td><td></td></tr>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -141,9 +105,7 @@
             </section>
         </main>
     </div>
-    
-    <button id="back-to-top" title="Retour en haut">↑</button>
-
+    <button id="back-to-top">↑</button>
     <script src="script.js"></script>
 </body>
 </html>
