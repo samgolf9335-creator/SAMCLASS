@@ -80,3 +80,19 @@ function toggleFolder(folderId) {
         folder.style.display = isHidden ? 'block' : 'none';
     }
 }
+function rechercherBulletin() {
+    const code = document.getElementById('massar-input').value.trim();
+    const errorMsg = document.getElementById('error-message');
+    
+    if (code === "") {
+        alert("Veuillez entrer votre code Massar");
+        return;
+    }
+
+    // LIEN VERS VOTRE DOSSIER GOOGLE DRIVE
+    // Option A : Si vous voulez que l'élève cherche dans le dossier :
+    const dossierLien = "https://drive.google.com/drive/folders/VOTRE_ID_GOOGLE_DRIVE";
+    
+    // On ouvre le dossier Google Drive
+    window.open(dossierLien, '_blank');
+}
