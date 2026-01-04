@@ -28,26 +28,24 @@
             <section id="content-area">
                 
                 <div id="section-accueil" class="content-section">
-                    <div class="welcome-card" id="login-form">
-    <h2>🔒 Espace Sécurisé</h2>
-    <input type="password" id="class-password" placeholder="Mot de passe...">
-    <button onclick="checkPassword()">Connexion</button>
-    <p id="login-error" style="display: none; color: red;">❌ Code incorrect.</p>
-</div>
+    <div class="welcome-card" id="login-form">
+        <h2>🔒 Espace Sécurisé</h2>
+        <p>Veuillez entrer le code de la classe pour accéder au contenu.</p>
+        <div style="margin-top: 20px;">
+            <input type="password" id="class-password" placeholder="Mot de passe...">
+            <button onclick="checkPassword()" class="btn-primary">Connexion</button>
+        </div>
+        <p id="login-error" style="display: none; color: red; margin-top: 10px;">❌ Code incorrect.</p>
+    </div>
 
-<div class="welcome-card" id="welcome-message" style="display: none;">
-    <h2>Bonjour chers élèves ! 👋</h2>
-    <p>Le contenu est maintenant débloqué.</p>
+    <div class="welcome-card" id="welcome-message" style="display: none;">
+        <h2>Bonjour chers élèves ! 👋</h2>
+        <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
+        <div class="news-banner" style="margin-top:20px; padding:15px; background:#f0f9ff; border-radius:8px; border-left:5px solid #3498db;">
+            <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
+        </div>
+    </div>
 </div>
-
-                    <div class="welcome-card" id="welcome-message" style="display: none;">
-                        <h2>Bonjour chers élèves ! 👋</h2>
-                        <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
-                        <div class="news-banner">
-                            <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
     <div class="welcome-card">
