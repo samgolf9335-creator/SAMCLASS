@@ -96,3 +96,24 @@ function rechercherBulletin() {
     // On ouvre le dossier Google Drive
     window.open(dossierLien, '_blank');
 }
+function rechercherBulletin() {
+    // 1. On récupère ce que l'élève a tapé
+    const code = document.getElementById('massar-input').value.trim().toUpperCase();
+    const errorMsg = document.getElementById('error-message');
+    
+    if (code === "") {
+        alert("Veuillez entrer votre code Massar");
+        return;
+    }
+
+    // 2. LE LIEN DRIVE (À MODIFIER)
+    // Collez ici le lien de votre DOSSIER Google Drive contenant les 129 PDF
+    const lienDossierDrive = "https://drive.google.com/drive/folders/150ShkQJgqueDV2-p6DBREokv6n3-4fdi?usp=drive_link?usp=sharing";
+
+    // 3. Action : On ouvre le dossier
+    // L'élève n'aura qu'à taper son code dans la barre de recherche du Drive qui s'ouvre
+    window.open(lienDossierDrive, '_blank');
+    
+    // Optionnel : masquer le message d'erreur s'il était affiché
+    errorMsg.style.display = 'none';
+}
