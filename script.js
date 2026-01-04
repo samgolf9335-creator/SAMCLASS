@@ -81,18 +81,28 @@ function toggleFolder(folderId) {
     }
 }
 function rechercherBulletin() {
-    const code = document.getElementById('massar-input').value.trim().toUpperCase();
+    const input = document.getElementById('massar-input');
+    const code = input.value.trim().toUpperCase();
     
     if (code === "") {
         alert("Veuillez entrer votre code Massar");
         return;
     }
 
-    // Remplacez ID_DU_DOSSIER par l'identifiant de votre dossier Google Drive
-    const idDossier = "VOTRE_ID_DE_DOSSIER_ICI"; 
-    
-    // Cette URL force Google Drive à rechercher le code Massar à l'intérieur de votre dossier
-    const urlRecherche = `https://drive.google.com/drive/u/0/folders/${idDossier}?q=${code}`;
+    // 1. VOTRE ID DE DOSSIER (À copier depuis l'adresse de votre dossier Drive)
+    // Exemple: si l'URL est .../folders/1A2B3C..., l'ID est 1A2B3C
+    const idDossier = "150ShkQJgqueDV2-p6DBREokv6n3-4fdi"; 
 
+    // 2. CONSTRUCTION DE LA REQUÊTE DE RECHERCHE
+    // Cette syntaxe dit à Google : "Cherche dans le dossier X les fichiers contenant le texte Y"
+    const requete = encodeURIComponent(`'${idDossier}' in parents and fullText contains '${code}'`);
+    
+    // 3. URL DE RECHERCHE AVANCÉE
+    const urlRecherche = `https://drive.google.com/drive/u/0/search?q=${requete}`;
+
+    // 4. OUVERTURE DU RÉSULTAT
     window.open(urlRecherche, '_blank');
+
+    // Optionnel : on vide le champ après la recherche
+    input.value = "";
 }
