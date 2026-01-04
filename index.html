@@ -61,16 +61,19 @@
                 </div>
 
                 <div id="section-notes" class="content-section" style="display:none;">
-                    <div class="welcome-card notes-card">
-                        <h2>📊 Mes Résultats - Période 2</h2>
-                        <p>Cliquez ci-dessous pour accéder au dossier des bulletins PDF.</p>
-                        <div class="action-area">
-                            <button onclick="window.open('VOTRE_LIEN_GOOGLE_DRIVE', '_blank')" class="btn-notes">
-                                📂 Consulter mon Bulletin
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <div class="welcome-card notes-card">
+        <h2>📊 Mes Résultats - Semestre 1</h2>
+        <p>Saisissez votre code Massar pour afficher votre bulletin.</p>
+        
+        <div class="search-area" style="margin: 20px 0;">
+            <input type="text" id="massar-input" placeholder="Ex: R198072633" 
+                   style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 200px;">
+            <button onclick="rechercherBulletin()" class="btn-primary">🔍 Voir mon bulletin</button>
+        </div>
+
+        <p id="error-message" style="color: #e74c3c; display: none;">❌ Code non trouvé. Réessayez.</p>
+    </div>
+</div>
 
                 <div id="section-planning" class="content-section" style="display:none;">
                     <div class="planning-container">
