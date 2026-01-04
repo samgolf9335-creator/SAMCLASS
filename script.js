@@ -40,21 +40,7 @@ function showSection(sectionId) {
         activeMenu.classList.add('active');
     }
 }
-
-function checkPassword() {
-    // Récupération des éléments
-    const passwordInput = document.getElementById('class-password');
-    const errorMsg = document.getElementById('login-error');
-    const loginForm = document.getElementById('login-form');
-    const welcomeMsg = document.getElementById('welcome-message');
-
-    // Vérification (Exemple avec le code 'SAM2026')
-    if (passwordInput.value === 'SAM2026') {
-        // SUCCÈS : On cache le formulaire et on montre le message de bienvenue
-        loginForm.style.display = 'none'; 
-        welcomeMsg.style.display = 'block';
-        errorMsg.style.display = 'none';
-        
+      
         // Optionnel : Enregistrer l'accès pour cette session
         sessionStorage.setItem('accessGranted', 'true');
     } else {
@@ -62,16 +48,48 @@ function checkPassword() {
         errorMsg.style.display = 'block';
     }
 }
-// --- 1. SÉCURITÉ ---
+// Variable globale pour suivre la connexion
+let isAuthenticated = false;
+
 function checkPassword() {
-    const mdp = document.getElementById('class-password').value;
-    if (mdp === "SAM2026") {
-        isAuthenticated = true;
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('welcome-message').style.display = 'block';
-        document.getElementById('section-accueil').style.display = 'block';
+    const passwordInput = document.getElementById('class-password');
+    const welcomeMsg = document.getElementById('welcome-message');
+    const loginForm = document.getElementById('login-form');
+    const errorMsg = document.getElementById('login-error');
+
+    if (passwordInput.value === 'SAM2026') {
+        isAuthenticated = true; // Débloque l'accès
+        loginForm.style.display = 'none'; 
+        welcomeMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+        alert("Accès autorisé ! Bienvenue sur SAMCLASS.");
     } else {
-        alert("Mot de passe incorrect.");
+        errorMsg.style.display = 'block';
+        isAuthenticated = false;
+    }
+}
+
+function showSection(sectionId) {
+    // SÉCURITÉ : Si l'élève n'est pas connecté et veut voir autre chose que l'accueil
+    if (!isAuthenticated && sectionId !== 'accueil') {
+        alert("🔒 Veuillez d'abord entrer le code secret sur la page d'accueil.");
+        return; // Arrête la fonction ici
+    }
+
+    // Sinon, on affiche la section normalement
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(s => s.style.display = 'none');
+
+    const targetSection = document.getElementById('section-' + sectionId);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
+
+    // Mise à jour visuelle du menu
+    document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
+    const activeMenu = document.getElementById('menu-' + sectionId);
+    if (activeMenu) {
+        activeMenu.classList.add('active');
     }
 }
 // --- GESTION DES DOSSIERS DE COURS ---
