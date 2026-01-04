@@ -89,20 +89,18 @@ function rechercherBulletin() {
         return;
     }
 
-    // 1. VOTRE ID DE DOSSIER (À copier depuis l'adresse de votre dossier Drive)
-    // Exemple: si l'URL est .../folders/1A2B3C..., l'ID est 1A2B3C
+    // Votre ID de dossier extrait de votre lien
     const idDossier = "150ShkQJgqueDV2-p6DBREokv6n3-4fdi"; 
 
-    // 2. CONSTRUCTION DE LA REQUÊTE DE RECHERCHE
-    // Cette syntaxe dit à Google : "Cherche dans le dossier X les fichiers contenant le texte Y"
-    const requete = encodeURIComponent(`'${idDossier}' in parents and fullText contains '${code}'`);
+    // Nouvelle syntaxe de recherche Google Drive "Infaillible"
+    // Cette commande cherche un fichier qui a le CODE dans son titre ET qui est dans votre dossier
+    const requete = encodeURIComponent(`name contains '${code}' and '${idDossier}' in parents`);
     
-    // 3. URL DE RECHERCHE AVANCÉE
     const urlRecherche = `https://drive.google.com/drive/u/0/search?q=${requete}`;
 
-    // 4. OUVERTURE DU RÉSULTAT
+    // Ouverture de la recherche
     window.open(urlRecherche, '_blank');
 
-    // Optionnel : on vide le champ après la recherche
+    // Nettoyage du champ
     input.value = "";
 }
