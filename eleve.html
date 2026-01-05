@@ -13,7 +13,7 @@
             <div class="logo">SAMCLASS</div>
             <ul>
                 <li id="menu-accueil" class="active" onclick="showSection('accueil')">🏠 Accueil</li>
-                <li id="menu-devoirs" onclick="showSection('devoirs')">📝 Cahier de Textes</li>
+                <li id="menu-devoirs" onclick="showSection('devoirs')">📝 Travail à faire</li>
                 <li id="menu-cours" onclick="showSection('cours')">📚 Mes Cours</li>
                 <li id="menu-notes" onclick="showSection('notes')">📊 Mes Résultats</li>
                 <li id="menu-planning" onclick="showSection('planning')">📅 Emploi du Temps</li>
@@ -75,6 +75,35 @@
         </div>
     </div>
 </div>
+              <div id="section-cours" class="content-section" style="display:none;">
+                    <div class="welcome-card">
+                        <h2>📚 Mes Cours de Français</h2>
+                        <div class="folder-container">
+                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
+                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
+                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
+                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
+                        </div>
+
+                        <div id="folder-lecture" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">📄 Texte : La ville de demain</a>
+                        </div>
+                        <div id="folder-langue" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
+                        </div>
+                        <div id="folder-production" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">📝 Décrire son quartier</a>
+                        </div>
+                        <div id="folder-eval" class="document-list" style="display:none;">
+                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
+                        </div>
+
+                        <div class="useful-links-section" style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+                            <h3>🔗 Outils</h3>
+                            <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card" style="display:inline-block; text-decoration:none; color:#333;">📖 <span>Dictionnaire Le Robert</span></a>
+                        </div>
+                    </div>
+                </div>
 
 
               <div id="section-notes" class="content-section" style="display:none;">
