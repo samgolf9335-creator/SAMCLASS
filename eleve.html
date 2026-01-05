@@ -28,24 +28,20 @@
             <section id="content-area">
                 
                 <div id="section-accueil" class="content-section">
-    <div class="welcome-card" id="login-form">
-        <h2>🔒 Espace Sécurisé</h2>
-        <p>Veuillez entrer le code de la classe pour accéder au contenu.</p>
-        <div style="margin-top: 20px;">
-            <input type="password" id="class-password" placeholder="Mot de passe...">
-            <button onclick="checkPassword()" class="btn-primary">Connexion</button>
-        </div>
-        <p id="login-error" style="display: none; color: red; margin-top: 10px;">❌ Code incorrect.</p>
-    </div>
+                    <div class="welcome-card" id="login-form">
+                        <h2>🔒 Espace Sécurisé</h2>
+                        <p>Entrez le code secret pour débloquer l'application.</p>
+                        <input type="password" id="class-password" placeholder="Mot de passe...">
+                        <button onclick="checkPassword()" class="btn-primary">Connexion</button>
+                        <p id="login-error" style="display: none; color: #e74c3c; font-weight: bold; margin-top: 10px;">❌ Code incorrect.</p>
+                    </div>
 
-    <div class="welcome-card" id="welcome-message" style="display: none;">
-        <h2>Bonjour chers élèves ! 👋</h2>
-        <p>Heureux de vous retrouver sur <strong>SAMCLASS</strong>.</p>
-        <div class="news-banner" style="margin-top:20px; padding:15px; background:#f0f9ff; border-radius:8px; border-left:5px solid #3498db;">
-            <p><strong>📢 Dernières nouvelles :</strong> Consultez l'onglet Cahier de Textes pour vos devoirs.</p>
-        </div>
-    </div>
-</div>
+                    <div class="welcome-card" id="welcome-message" style="display: none;">
+                        <h2>Bonjour chers élèves ! 👋</h2>
+                        <p>Le contenu est maintenant <strong>débloqué</strong>.</p>
+                        <p>Heureux de vous retrouver sur votre espace <strong>SAMCLASS</strong>.</p>
+                    </div>
+                </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
     <div class="welcome-card">
@@ -81,64 +77,30 @@
 </div>
 
 
-                <div id="section-cours" class="content-section" style="display:none;">
-                    <div class="welcome-card">
-                        <h2>📚 Mes Cours de Français</h2>
-                        <div class="folder-container">
-                            <div class="folder" onclick="toggleFolder('folder-lecture')">
-                                <span class="folder-icon">📂</span>
-                                <span class="folder-name">Texte de lecture</span>
-                            </div>
-                            <div class="folder" onclick="toggleFolder('folder-langue')">
-                                <span class="folder-icon">📂</span>
-                                <span class="folder-name">Langue</span>
-                            </div>
-                            <div class="folder" onclick="toggleFolder('folder-production')">
-                                <span class="folder-icon">📂</span>
-                                <span class="folder-name">Production écrite</span>
-                            </div>
-                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">
-                                <span class="folder-icon">📝</span>
-                                <span class="folder-name">Évaluations</span>
-                            </div>
-                        </div>
+              <div id="section-notes" class="content-section" style="display:none;">
+    <div class="welcome-card notes-card">
+        <h2>📊 Mes Résultats - Période 1</h2>
+        <p>Saisissez votre code Massar pour afficher votre bulletin personnel.</p>
+        
+        <div class="search-area" style="margin: 20px 0;">
+            <input type="text" id="massar-input" placeholder="Ex: R198072633" 
+                   style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; width: 220px; font-size: 16px;">
+            
+            <button onclick="rechercherBulletin()" class="btn-notes" 
+                    style="padding: 12px 20px; border-radius: 8px; cursor: pointer; background-color: #3498db; color: white; border: none; font-weight: bold;">
+                🔍 Voir mon bulletin
+            </button>
+        </div>
 
-                        <div id="folder-lecture" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">📄 Texte : La ville de demain</a>
-                        </div>
-                        <div id="folder-langue" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
-                        </div>
-                        <div id="folder-production" class="document-list" style="display:none;">
-                            <a href="#" class="link-card">📝 Décrire son quartier</a>
-                        </div>
-                        <div id="folder-eval" class="document-list" style="display:none;">
-                            <a href="https://votre-lien-drive" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
-                        </div>
-
-                        <div class="useful-links-section">
-                            <h3>🔗 Outils utiles</h3>
-                            <div class="links-grid">
-                                <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card">
-                                    <span class="link-icon">📖</span> Le Robert
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="section-notes" class="content-section" style="display:none;">
-                    <div class="welcome-card notes-card">
-                        <h2>📊 Mes Résultats - 2025/2026</h2>
-                        <p>Consultez vos bulletins de notes (PO, CO, LC, etc.) mis à jour régulièrement.</p>
-                        <div class="action-area">
-                            <button onclick="window.open('VOTRE_LIEN_GOOGLE_DRIVE', '_blank')" class="btn-notes">
-                                📂 Consulter mes bulletins (PDF)
-                            </button>
-                        </div>
-                        <p class="small-info">Les bulletins sont mis à jour après chaque évaluation.</p>
-                    </div>
-                </div>
+        <p id="error-message" style="color: #e74c3c; display: none; font-weight: bold;">
+            ❌ Code non trouvé ou bulletin indisponible.
+        </p>
+        
+        <p style="font-size: 0.85em; margin-top: 15px; color: #7f8c8d;">
+            <i>Note : Votre bulletin s'ouvrira dans un nouvel onglet en format PDF.</i>
+        </p>
+    </div>
+</div>
 
                 <div id="section-planning" class="content-section" style="display:none;">
                     <div class="planning-container">
@@ -146,7 +108,7 @@
                             <thead>
                                 <tr><th>Heure</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th></tr>
                             </thead>
-                            <tbody>
+                             <tbody>
                                 <tr><td class="time">08h30-09h35</td><td></td><td class="c-6APG4">6APG4</td><td></td><td class="c-6APG4">6APG4</td><td class="c-6APG1">6APG1</td><td></td></tr>
                                 <tr><td class="time">09h40-10h45</td><td></td><td class="c-6APG3">6APG3</td><td></td><td class="c-6APG3">6APG3</td><td class="c-6APG2">6APG2</td><td></td></tr>
                                 <tr><td class="time">10h55-12h00</td><td></td><td class="c-6APG2">6APG2</td><td></td><td class="c-6APG2">6APG2</td><td class="c-6APG3">6APG3</td><td></td></tr>
@@ -163,9 +125,8 @@
             </section>
         </main>
     </div>
-    
-    <button id="back-to-top" title="Retour en haut">↑</button>
 
+    <button id="back-to-top">↑</button>
     <script src="script.js"></script>
 </body>
 </html>
