@@ -387,3 +387,43 @@ input[type="password"] {
     text-align: center; /* Centre le contenu de la carte (password, etc) */
     margin: 20px auto;
 }
+/* Style pour la zone de recherche des notes */
+.search-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* S'adapte sur mobile */
+    margin: 25px 0;
+}
+
+#massar-input {
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+#massar-input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.btn-notes {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    transition: transform 0.2s ease, background 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-notes:hover {
+    background: linear-gradient(135deg, #2980b9, #2573a7);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-notes:active {
+    transform: translateY(0);
+}
+
+.notes-card {
+    border-top: 5px solid #3498db; /* Une petite barre bleue en haut de la carte */
+}
