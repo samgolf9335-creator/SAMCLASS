@@ -81,6 +81,7 @@ function toggleFolder(folderId) {
     }
 }
 function rechercherBulletin() {
+    // Récupération du code saisi par l'élève
     const input = document.getElementById('massar-input');
     const code = input.value.trim().toUpperCase();
     
@@ -89,19 +90,14 @@ function rechercherBulletin() {
         return;
     }
 
-    // Votre ID de dossier extrait de votre lien
-    const idDossier = "150ShkQJgqueDV2-p6DBREokv6n3-4fdi"; 
+    // On construit le chemin vers le dossier 'bulletins' que vous venez de créer sur GitHub
+    // Le code doit correspondre au nom du fichier (ex: R123456.pdf)
+    const urlDirecte = `bulletins/${code}.pdf`;
 
-    // Nouvelle syntaxe de recherche Google Drive "Infaillible"
-    // Cette commande cherche un fichier qui a le CODE dans son titre ET qui est dans votre dossier
-    const requete = encodeURIComponent(`name contains '${code}' and '${idDossier}' in parents`);
-    
-    const urlRecherche = `https://drive.google.com/drive/u/0/search?q=${requete}`;
+    // On ouvre le bulletin dans un nouvel onglet
+    window.open(urlDirecte, '_blank');
 
-    // Ouverture de la recherche
-    window.open(urlRecherche, '_blank');
-
-    // Nettoyage du champ
+    // On vide le champ de saisie pour l'élève suivant
     input.value = "";
 }
 // Dans script.js
