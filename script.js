@@ -92,7 +92,7 @@ function rechercherBulletin() {
 
     // On construit le chemin vers le dossier 'bulletins1' que vous venez de créer sur GitHub
     // Le code doit correspondre au nom du fichier (ex: R123456.pdf)
-    const urlDirecte = `bulletins1/${code}.pdf`;
+    const urlDirecte = 'bulletins1'/${code}.pdf`;
 
     // On ouvre le bulletin dans un nouvel onglet
     window.open(urlDirecte, '_blank');
