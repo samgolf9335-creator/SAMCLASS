@@ -92,7 +92,7 @@ function rechercherBulletin() {
 
     // On construit le chemin vers le dossier 'Bulletins1' que vous venez de créer sur GitHub
     // Le code doit correspondre au nom du fichier (ex: R123456.pdf)
-    const urlDirecte = 'Bulletins1'/${code}.pdf`;
+    const urlDirecte = 'Bulletins1/${code}.pdf`;
 
     // On ouvre le bulletin dans un nouvel onglet
     window.open(urlDirecte, '_blank');
@@ -100,6 +100,3 @@ function rechercherBulletin() {
     // On vide le champ de saisie pour l'élève suivant
     input.value = "";
 }
-// Dans script.js
-const idDossier = "150ShkQJgqueDV2-p6DBREokv6n3-4fdi";
-const urlRecherche = `https://drive.google.com/drive/u/0/search?q=parent:${idDossier}%20title:${code}`;
