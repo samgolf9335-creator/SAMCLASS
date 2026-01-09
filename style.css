@@ -1,27 +1,3 @@
-.app-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 250px;
-    flex-shrink: 0; /* Empêche la sidebar de s'écraser */
-}
-
-.main-content {
-    flex-grow: 1; /* Prend tout l'espace restant sans déborder */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre les cartes horizontalement */
-}
-
-.content-section {
-    width: 100%;
-    max-width: 900px; /* Limite la largeur pour que ce soit beau */
-    margin: 0 auto;
-}
 /* ==========================================================================
    1. BASES ET MISE EN PAGE (LAYOUT)
    ========================================================================== */
@@ -36,7 +12,8 @@ body {
     background-color: #f4f7f9; 
     display: flex; 
     height: 100vh; 
-    overflow: hidden; /* Empêche le scroll global, seul le contenu défilera */
+    width: 100vw;
+    overflow: hidden; 
 }
 
 .app-container { 
@@ -83,18 +60,26 @@ body {
 .sidebar li.active { background: #3498db; color: white; }
 
 /* ==========================================================================
-   3. CONTENU PRINCIPAL
+   3. CONTENU PRINCIPAL (CORRIGÉ POUR PLEINE PAGE)
    ========================================================================== */
 .main-content { 
     flex-grow: 1; 
     padding: 30px; 
     overflow-y: auto; 
+    background-color: #f4f7f9;
+    /* On enlève align-items: center pour ne plus centrer au milieu */
 }
 
 header { 
     margin-bottom: 25px; 
     border-bottom: 2px solid #e0e0e0; 
     padding-bottom: 10px; 
+    width: 100%;
+}
+
+.content-section {
+    width: 100%;
+    max-width: none; /* Supprime la limite de 900px */
 }
 
 .welcome-card { 
@@ -103,22 +88,49 @@ header {
     border-radius: 15px; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
     margin-bottom: 25px; 
-}
-
-#welcome-message ul {
-    list-style-type: "📍 ";
-    padding-left: 20px;
-    margin-top: 10px;
+    width: 100%; /* Prend toute la largeur disponible */
 }
 
 /* ==========================================================================
-   4. EMPLOI DU TEMPS ET COULEURS CLASSES
+   4. CAHIER DE TEXTES / DEVOIRS (GRILLE LARGEUR TOTALE)
+   ========================================================================== */
+#task-list {
+    display: grid;
+    /* Crée des colonnes automatiques de 300px minimum */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+}
+
+.task-card { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 12px; 
+    border-left: 6px solid #ccc; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-card:has(.tag-texte) { border-left-color: #3498db; }
+.task-card:has(.tag-langue) { border-left-color: #2ecc71; }
+.task-card:has(.tag-production) { border-left-color: #e67e22; }
+
+/* ==========================================================================
+   5. EMPLOI DU TEMPS
    ========================================================================== */
 .planning-container { 
     background: white; 
     padding: 20px; 
     border-radius: 12px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    width: 100%;
+    overflow-x: auto; /* Permet le défilement si le tableau est trop large */
 }
 
 .timetable { 
@@ -141,289 +153,63 @@ header {
     height: 50px;
 }
 
-/* Couleurs des classes (Préfixe "c-" obligatoire pour la validité CSS) */
 .c-6APG1 { background-color: #e74c3c !important; color: white !important; font-weight: bold; }
 .c-6APG2 { background-color: #2ecc71 !important; color: white !important; font-weight: bold; }
 .c-6APG3 { background-color: #f1c40f !important; color: #333 !important; font-weight: bold; }
 .c-6APG4 { background-color: #9b59b6 !important; color: white !important; font-weight: bold; }
 
 /* ==========================================================================
-   5. CAHIER DE TEXTES ET DEVOIRS
+   6. INTERFACE DE RECHERCHE (BULLETINS)
    ========================================================================== */
-.input-section { 
-    background: white; 
-    padding: 20px; 
-    border-radius: 10px; 
-    margin-bottom: 20px; 
-    display: flex; 
-    gap: 10px; 
-    flex-wrap: wrap; 
-    align-items: center;
-}
-
-.input-section input, .input-section select { 
-    padding: 10px; 
-    border: 1px solid #ddd; 
-    border-radius: 5px; 
-}
-
-/* Styles des Cartes de Devoirs */
-.task-card { 
-    background: white; 
-    padding: 15px; 
-    border-radius: 8px; 
-    margin-bottom: 15px; 
-    border-left: 6px solid #ccc; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.search-area {
     display: flex;
-    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
 }
 
-/* Association couleurs bordures devoirs */
-.task-card:has(.tag-texte) { border-left-color: #3498db; }
-.task-card:has(.tag-langue) { border-left-color: #2ecc71; }
-.task-card:has(.tag-production) { border-left-color: #e67e22; }
-
-.subject-tag {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 20px;
-    color: white;
-    font-size: 0.8em;
-    font-weight: bold;
-    margin-bottom: 8px;
-    width: fit-content;
-}
-
-.tag-texte { background-color: #3498db; }
-.tag-langue { background-color: #2ecc71; }
-.tag-production { background-color: #e67e22; }
-
-/* ==========================================================================
-   6. DOSSIERS ET LIENS (RESSOURCES)
-   ========================================================================== */
-.folder-container { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: center; 
-}
-
-.folder { 
-    width: 150px; 
-    padding: 20px; 
-    background-color: #f9f9f9; 
-    border: 2px solid #e0e0e0; 
-    border-radius: 10px; 
-    text-align: center; 
-    transition: 0.3s; 
-}
-
-.folder:hover { 
-    background-color: #e3f2fd; 
-    transform: translateY(-5px); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-}
-
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-.link-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
-    background-color: #f1f5f9;
+#massar-input {
+    flex-grow: 1;
+    max-width: 400px;
+    padding: 12px;
+    border: 2px solid #ddd;
     border-radius: 8px;
-    text-decoration: none;
-    color: #333;
-    transition: 0.3s;
-}
-
-.link-card:hover { 
-    background-color: #e2e8f0; 
-    border-left: 4px solid #3498db;
 }
 
 /* ==========================================================================
-   7. MODES ET UTILITAIRES
+   7. UTILS & BOUTONS
    ========================================================================== */
-
-/* Mode Élève : Cache les contrôles d'édition */
-.mode-eleve .input-section, 
-.mode-eleve .btn-delete,
-.mode-eleve button[onclick*="delete"],
-.mode-eleve button[onclick*="add"] {
-    display: none !important;
-}
-
-/* Bouton Retour en haut */
-#back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.document-list { animation: fadeIn 0.3s ease; }
-/* Style pour le bouton Connexion et Bulletins */
 .btn-primary, .btn-notes {
     background: #3498db;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
 }
 
-.btn-primary:hover, .btn-notes:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-}
+.btn-primary:hover { background: #2980b9; }
 
-.error-msg {
-    color: #e74c3c;
-    font-size: 0.9rem;
-    margin-top: 10px;
-}
-/* Amélioration des boutons de connexion et bulletins */
-button, .btn-primary, .btn-notes {
-    padding: 10px 20px;
-    background-color: #3498db;
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #3498db;
     color: white;
+    border-radius: 50%;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
+    display: none;
+    z-index: 1000;
 }
 
-button:hover {
-    background-color: #2980b9;
-}
-
-input[type="password"] {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-right: 5px;
-}
-/* Optimisation pour Mobile */
+/* Optimisation Mobile */
 @media (max-width: 768px) {
-    .button-grid {
-        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-        gap: 15px;
-    }
-
-    .grid-btn {
-        padding: 20px; /* Boutons plus grands pour le tactile */
-        font-size: 1.1rem;
-        min-height: 70px;
-    }
-
-    .container {
-        padding: 10px;
-        width: 95%;
-    }
-
-    .pro-header h1 {
-        font-size: 1.8rem;
-    }
-}
-.welcome-card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    max-width: 350px;
-    margin: 40px auto;
-    border: 1px solid #eee;
-}
-
-#class-password {
-    width: 100%;
-    margin-bottom: 15px;
-    box-sizing: border-box; /* Évite que l'input ne dépasse */
-    border: 2px solid #3498db;
-}
-/* Empêcher le décalage à droite */
-.app-container {
-    display: flex;
-    width: 100vw;
-    overflow-x: hidden;
-}
-
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    align-items: center; /* Centre les cartes */
-}
-
-.content-section {
-    width: 100%;
-    max-width: 900px;
-}
-
-.welcome-card {
-    text-align: center; /* Centre le contenu de la carte (password, etc) */
-    margin: 20px auto;
-}
-/* Style pour la zone de recherche des notes */
-.search-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap; /* S'adapte sur mobile */
-    margin: 25px 0;
-}
-
-#massar-input {
-    border: 2px solid #e0e0e0;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    outline: none;
-}
-
-#massar-input:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
-}
-
-.btn-notes {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    transition: transform 0.2s ease, background 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.btn-notes:hover {
-    background: linear-gradient(135deg, #2980b9, #2573a7);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn-notes:active {
-    transform: translateY(0);
-}
-
-.notes-card {
-    border-top: 5px solid #3498db; /* Une petite barre bleue en haut de la carte */
+    .sidebar { width: 70px; padding: 10px; }
+    .sidebar .logo, .sidebar span { display: none; }
+    .main-content { padding: 15px; }
+    #task-list { grid-template-columns: 1fr; }
 }
