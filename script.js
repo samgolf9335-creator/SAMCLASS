@@ -1,8 +1,13 @@
+// ==========================================
 // 1. VARIABLES GLOBALES
-let isAuthenticated = false; // Bloqué par défaut
+// ==========================================
+let isAuthenticated = false; 
 
+// ==========================================
+// 2. INITIALISATION AU CHARGEMENT
+// ==========================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialisation : Montrer l'accueil par défaut
+    // Montrer l'accueil par défaut
     showSection('accueil');
 
     // Gestion du bouton retour en haut
@@ -23,7 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 2. FONCTION DE CONNEXION (Unique et corrigée)
+// ==========================================
+// 3. SYSTÈME DE CONNEXION
+// ==========================================
 function checkPassword() {
     const passwordInput = document.getElementById('class-password');
     const errorMsg = document.getElementById('login-error');
@@ -32,7 +39,7 @@ function checkPassword() {
 
     // Le mot de passe choisi
     if (passwordInput.value === 'SAM2026') {
-        isAuthenticated = true; // ON DÉBLOQUE L'ACCÈS
+        isAuthenticated = true; 
         
         loginForm.style.display = 'none'; 
         welcomeMsg.style.display = 'block';
@@ -45,7 +52,9 @@ function checkPassword() {
     }
 }
 
-// 3. NAVIGATION SÉCURISÉE
+// ==========================================
+// 4. NAVIGATION SÉCURISÉE
+// ==========================================
 function showSection(sectionId) {
     // Si l'élève n'est pas connecté et essaie d'aller ailleurs qu'à l'accueil
     if (!isAuthenticated && sectionId !== 'accueil') {
@@ -63,7 +72,7 @@ function showSection(sectionId) {
         targetSection.style.display = 'block';
     }
 
-    // Mise à jour du menu
+    // Mise à jour visuelle du menu (sidebar)
     document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
     const activeMenu = document.getElementById('menu-' + sectionId);
     if (activeMenu) {
@@ -71,17 +80,10 @@ function showSection(sectionId) {
     }
 }
 
-// 4. GESTION DES DOSSIERS
-function toggleFolder(folderId) {
-    const folder = document.getElementById(folderId);
-    if (folder) {
-        const isHidden = (folder.style.display === 'none' || folder.style.display === '');
-        document.querySelectorAll('.document-list').forEach(d => d.style.display = 'none');
-        folder.style.display = isHidden ? 'block' : 'none';
-    }
-}
+// ==========================================
+// 5. GESTION DES BULLETINS (CORRIGÉ)
+// ==========================================
 function rechercherBulletin() {
-    // Récupération du code saisi par l'élève
     const input = document.getElementById('massar-input');
     const code = input.value.trim().toUpperCase();
     
@@ -90,16 +92,24 @@ function rechercherBulletin() {
         return;
     }
 
-    // On construit le chemin vers le dossier 'bulletins' que vous venez de créer sur GitHub
-    // Le code doit correspondre au nom du fichier (ex: R123456.pdf)
-    const urlDirecte = 'bulletins/${code}.pdf`;
+    // Utilisation correcte des backticks pour injecter la variable ${code}
+    const urlDirecte = `Bulletins1/${code}.pdf`;
 
-    // On ouvre le bulletin dans un nouvel onglet
+    // On tente d'ouvrir le PDF
     window.open(urlDirecte, '_blank');
 
-    // On vide le champ de saisie pour l'élève suivant
+    // On vide le champ
     input.value = "";
 }
-// Dans script.js
-const idDossier = "150ShkQJgqueDV2-p6DBREokv6n3-4fdi";
-const urlRecherche = `https://drive.google.com/drive/u/0/search?q=parent:${idDossier}%20title:${code}`;
+
+// ==========================================
+// 6. GESTION DES DOSSIERS
+// ==========================================
+function toggleFolder(folderId) {
+    const folder = document.getElementById(folderId);
+    if (folder) {
+        const isHidden = (folder.style.display === 'none' || folder.style.display === '');
+        document.querySelectorAll('.document-list').forEach(d => d.style.display = 'none');
+        folder.style.display = isHidden ? 'block' : 'none';
+    }
+}
