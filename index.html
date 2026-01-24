@@ -7,13 +7,13 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="mode-eleve">
     <div class="app-container">
         <nav class="sidebar">
             <div class="logo">SAMCLASS</div>
             <ul>
                 <li id="menu-accueil" class="active" onclick="showSection('accueil')">🏠 Accueil</li>
-                <li id="menu-devoirs" onclick="showSection('devoirs')">📝 Cahier de Textes</li>
+                <li id="menu-devoirs" onclick="showSection('devoirs')">📝 Travail à faire</li>
                 <li id="menu-cours" onclick="showSection('cours')">📚 Mes Cours</li>
                 <li id="menu-notes" onclick="showSection('notes')">📊 Mes Résultats</li>
                 <li id="menu-planning" onclick="showSection('planning')">📅 Emploi du Temps</li>
@@ -44,21 +44,69 @@
                 </div>
 
                 <div id="section-devoirs" class="content-section" style="display:none;">
+    <div class="welcome-card">
+        <h2>📝 Travail à faire</h2>
+        <div id="task-list-fixe">
+            
+            <div class="task-card">
+                <div class="task-info">
+                    <span class="subject-tag tag-texte">Texte</span>
+                    <span class="task-date">📅 Pour le Jeudi 15 Janvier</span>
+                    <p class="task-text">Lire le texte "Comment tu vas aujourd'hui. page 51" et répondre aux questions de compréhension.</p>
+                </div>
+            </div>
+
+            <div class="task-card">
+                <div class="task-info">
+                    <span class="subject-tag tag-langue">Langue</span>
+                    <span class="task-date">📅 Pour le Vendredi 16 Janvier</span>
+                    <p class="task-text">se sentir au présent.Faire les exercices 1 page 52 du manuel.</p>
+                </div>
+            </div>
+
+            <div class="task-card">
+                <div class="task-info">
+                    <span class="subject-tag tag-production">Production</span>
+                    <span class="task-date">📅 Pour le vendredi 02 Janvier</span>
+                    <p class="task-text">Écrire un paragraphe pour parler de mes opinions et des mes émotions. page 52.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+              <div id="section-cours" class="content-section" style="display:none;">
                     <div class="welcome-card">
-                        <h2>📝 Cahier de Textes</h2>
-                        <div class="input-section">
-                            <input type="text" id="task-input" placeholder="Nouveau devoir...">
-                            <select id="subject-select">
-                                <option value="langue">Langue</option>
-                                <option value="lecture">Lecture</option>
-                                <option value="production">Production écrite</option>
-                            </select>
-                            <input type="date" id="date-input">
-                            <button onclick="addTask()" class="btn-primary">Ajouter</button>
+                        <h2>📚 Mes Cours de Français</h2>
+                        <div class="folder-container">
+                            <div class="folder" onclick="toggleFolder('folder-lecture')">📂 Texte de lecture</div>
+                            <div class="folder" onclick="toggleFolder('folder-langue')">📂 Langue</div>
+                            <div class="folder" onclick="toggleFolder('folder-production')">📂 Production écrite</div>
+                            <div class="folder evaluation-folder" onclick="toggleFolder('folder-eval')">📝 Évaluations</div>
                         </div>
-                        <div id="task-list"></div>
+
+                        <div id="folder-lecture" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">📄 Texte : La ville de demain</a>
+                        </div>
+                        <div id="folder-langue" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">✍️ Le futur simple (Verbe aller)</a>
+                        </div>
+                        <div id="folder-production" class="document-list" style="display:none;">
+                            <a href="#" class="link-card">📝 Décrire son quartier</a>
+                        </div>
+                        <div id="folder-eval" class="document-list" style="display:none;">
+                            <a href="https://drive.google.com/uc?export=download&id=1DZHLzyZKN1gRwMDwyJ-N-UJxfclR9_gh" class="link-card download-btn">📥 Télécharger : Contrôle Continu N°1</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1tui78VAyIB8w_mMQHZ_hDSOcLYGsOTM_ " class="link-card download-btn">📥 Télécharger : Contrôle Continu N°2</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1tXvXtv1b0iDC4puQW_l8ZxmOZtqdywj_ " class="link-card download-btn">📥 Télécharger : Révision - Période 2 : Mes goûts et mes sentiments </a>
+                        </div>
+               
+                        <div class="useful-links-section" style="margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+                            <h3>🔗 Outils</h3>
+                            <a href="https://dictionnaire.lerobert.com/" target="_blank" class="link-card" style="display:inline-block; text-decoration:none; color:#333;">📖 <span>Dictionnaire Le Robert</span></a>
+                        </div>
                     </div>
                 </div>
+
 
               <div id="section-notes" class="content-section" style="display:none;">
     <div class="welcome-card notes-card">
