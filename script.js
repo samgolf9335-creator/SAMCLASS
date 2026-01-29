@@ -113,3 +113,28 @@ function toggleFolder(folderId) {
         folder.style.display = isHidden ? 'block' : 'none';
     }
 }
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+const navItems = document.querySelectorAll('.sidebar li');
+
+// Ouvrir/Fermer le menu au clic sur le bouton
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    menuToggle.classList.toggle('open');
+});
+
+// Fermer le menu automatiquement quand on clique sur un lien (rubrique)
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        menuToggle.classList.remove('open');
+    });
+});
+
+// Fermer le menu si on clique sur le contenu principal
+document.querySelector('.main-content').addEventListener('click', () => {
+    if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        menuToggle.classList.remove('open');
+    }
+});
