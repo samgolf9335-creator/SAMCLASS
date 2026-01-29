@@ -213,3 +213,277 @@ header {
     .main-content { padding: 15px; }
     #task-list { grid-template-columns: 1fr; }
 }
+/* ==========================================================================
+   1. BASES ET MISE EN PAGE (LAYOUT)
+   ========================================================================== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+body { 
+    background-color: #f4f7f9; 
+    display: flex; 
+    height: 100vh; 
+    width: 100vw;
+    overflow: hidden; 
+}
+
+.app-container { 
+    display: flex; 
+    width: 100%; 
+    height: 100%;
+}
+
+/* ==========================================================================
+   2. BARRE LATÉRALE (SIDEBAR)
+   ========================================================================== */
+.sidebar { 
+    width: 250px; 
+    background-color: #1a2a3a; 
+    color: white; 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar .logo { 
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #3498db; 
+    margin-bottom: 40px; 
+    text-align: center; 
+}
+
+.sidebar ul { list-style: none; }
+
+.sidebar li { 
+    padding: 12px 15px; 
+    margin-bottom: 10px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    transition: 0.3s; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+}
+
+.sidebar li:hover { background: #2c3e50; }
+.sidebar li.active { background: #3498db; color: white; }
+
+/* ==========================================================================
+   3. CONTENU PRINCIPAL (CORRIGÉ POUR PLEINE PAGE)
+   ========================================================================== */
+.main-content { 
+    flex-grow: 1; 
+    padding: 30px; 
+    overflow-y: auto; 
+    background-color: #f4f7f9;
+    /* On enlève align-items: center pour ne plus centrer au milieu */
+}
+
+header { 
+    margin-bottom: 25px; 
+    border-bottom: 2px solid #e0e0e0; 
+    padding-bottom: 10px; 
+    width: 100%;
+}
+
+.content-section {
+    width: 100%;
+    max-width: none; /* Supprime la limite de 900px */
+}
+
+.welcome-card { 
+    background: white; 
+    padding: 25px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    margin-bottom: 25px; 
+    width: 100%; /* Prend toute la largeur disponible */
+}
+
+/* ==========================================================================
+   4. CAHIER DE TEXTES / DEVOIRS (GRILLE LARGEUR TOTALE)
+   ========================================================================== */
+#task-list {
+    display: grid;
+    /* Crée des colonnes automatiques de 300px minimum */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+}
+
+.task-card { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 12px; 
+    border-left: 6px solid #ccc; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-card:has(.tag-texte) { border-left-color: #3498db; }
+.task-card:has(.tag-langue) { border-left-color: #2ecc71; }
+.task-card:has(.tag-production) { border-left-color: #e67e22; }
+
+/* ==========================================================================
+   5. EMPLOI DU TEMPS
+   ========================================================================== */
+.planning-container { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    width: 100%;
+    overflow-x: auto; /* Permet le défilement si le tableau est trop large */
+}
+
+.timetable { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.timetable th { 
+    background: #34495e; 
+    color: white; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+}
+
+.timetable td { 
+    border: 1px solid #eee; 
+    padding: 10px; 
+    text-align: center; 
+    min-width: 100px;
+    height: 50px;
+}
+
+.c-6APG1 { background-color: #e74c3c !important; color: white !important; font-weight: bold; }
+.c-6APG2 { background-color: #2ecc71 !important; color: white !important; font-weight: bold; }
+.c-6APG3 { background-color: #f1c40f !important; color: #333 !important; font-weight: bold; }
+.c-6APG4 { background-color: #9b59b6 !important; color: white !important; font-weight: bold; }
+
+/* ==========================================================================
+   6. INTERFACE DE RECHERCHE (BULLETINS)
+   ========================================================================== */
+.search-area {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#massar-input {
+    flex-grow: 1;
+    max-width: 400px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   7. UTILS & BOUTONS
+   ========================================================================== */
+.btn-primary, .btn-notes {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary:hover { background: #2980b9; }
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+}
+
+/* Optimisation Mobile */
+@media (max-width: 768px) {
+    .sidebar { width: 70px; padding: 10px; }
+    .sidebar .logo, .sidebar span { display: none; }
+    .main-content { padding: 15px; }
+    #task-list { grid-template-columns: 1fr; }
+}
+/* --- Styles pour le Menu Mobile --- */
+
+/* Cache le bouton sur ordinateur */
+.menu-btn { display: none; }
+
+@media (max-width: 768px) {
+    /* Style du bouton Hamburger */
+    .menu-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 2000; /* Très haut pour être au-dessus de tout */
+    }
+
+    .menu-btn span {
+        width: 30px;
+        height: 3px;
+        background: #2c3e50; /* Couleur sombre pour contraster avec le fond blanc */
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    /* Animation du bouton en X */
+    .menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: #fff; }
+    .menu-btn.open span:nth-child(2) { opacity: 0; }
+    .menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); background: #fff; }
+
+    /* Configuration de la Sidebar en mode mobile */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 260px;
+        transform: translateX(-100%); /* Cachée à gauche */
+        transition: transform 0.4s ease-in-out;
+        z-index: 1500;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    /* Quand la sidebar est active */
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        padding-top: 60px; /* Laisse de la place pour le bouton en haut */
+    }
+}
